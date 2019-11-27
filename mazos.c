@@ -72,6 +72,12 @@ void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
 	printf("\nMazo 2 al final:\n");
 	mostrar_mazo(mazo2);
 }
+void es_la_ultima(tjug *a);
+{
+	if(a.c.n==1)
+		a.uno=1; //canvia el camp uno struct jugador//
+	return(a)
+}
 
 temazo iniciar_cartas()
 {
