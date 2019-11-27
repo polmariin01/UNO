@@ -1,18 +1,6 @@
 #include <stdio.h>
 #include "carta.h"
-
-typedef struct
-{
-	int n;			//numero de cartas en el mazo
-	tcarta mazo[MAXCART];	//cartas del mazo
-} temazo;
-
-typedef struct
-{
-	char nom[20];	//nombre jugador
-	temazo c;	//mazo del jugador
-} tjug;
-
+#include "mazos.h"
 
 void mostrar_mazo(temazo mazo){
 	int numcartas=mazo.n;
@@ -43,4 +31,67 @@ void mostrar_mazo(temazo mazo){
 		}
 		printf("\n");
 	}
+}
+
+void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
+{
+	printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
+	printf("\nMazo 1 al principio:\n");
+	mostrar_mazo(mazo1);
+	printf("\nMazo 2 al principio:\n");
+	mostrar_mazo(mazo2);
+
+	//carta que s'ha de moure, copia auxiliar
+	tcarta c;
+	c=mazo1.mazo[pos];
+	
+	//quitar carta de mazo 1
+
+	for (i=pos; i<mazo1.n-1;i++) {
+		mazo1.mazo[i]=mazo1.mazo[i+1];
+	} 
+	mazo1.n--;
+
+	//poner carta en mazo 2
+	
+	mazo2.mazo[mazo2.n]=c;
+	mazo2.n++;
+
+	//wea de prueba
+	printf("\n\n\nMazo 1 al final:\n");
+	mostrar_mazo(mazo1);
+	printf("\nMazo 2 al final:\n");
+	mostrar_mazo(mazo2);
+}
+
+temazo iniciar_cartas()
+{
+	int i, j, pos=0;
+	temazo mazo;
+	mazo.n=0;
+
+	for (i=1; i<=4; i++) {
+		for (j=0; j<=12; j++) {
+			if (j!=0) {
+				mazo.mazo[pos].col=i;
+				mazo.mazo[pos].num=j;
+				mazo.n++;
+				pos++;
+			}
+			mazo.mazo[pos].col=i;
+			mazo.mazo[pos].num=j;
+			mazo.n++;
+			pos++;
+		}
+	}
+
+	for (i=0; i<2; i++) {
+		for(j=0; j<4; j++) {
+			mazo.mazo[pos].col=0;
+			mazo.mazo[pos].num=13+i;
+			pos++;
+			mazo.n++;
+		}
+	}
+	return mazo;
 }
