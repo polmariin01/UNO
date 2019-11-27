@@ -1,15 +1,32 @@
 #include <stdio.h>
-#include "extres.h"
-#include "carta.h"
-#include "mazo.h"
-#include "partida.h"
+#include "cartas.c"
+#include "mazo.c"
+#include "partida"
+#define MAXCART 108
 
-int main() {
-	intro();
-	printf("VAmo a ase la wea ");
-	float mango;
-	int wea;
-	scanf("%d",&wea);
-	mango=prova(wea);
-	printf("La wea %d del mango %f",wea, mango);
-}
+typedef struct
+{
+	int col;
+	char car;
+} tcarta;
+
+typedef struct
+{
+	int n;
+	tcarta mazo[MAXCART];
+} temazo;
+
+typedef struct
+{
+	char nom[20];
+	temazo c;
+	int uno; //0 si no te uno, 1 si te uno//
+} tjug;
+
+typedef struct
+{
+	int color;
+	int sentido; //0 horario, 1 antihorario//
+	int comprobacion; //0 cubert, 1 descubert//
+}tpartida;
+
