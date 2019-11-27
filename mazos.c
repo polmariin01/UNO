@@ -33,6 +33,15 @@ void mostrar_mazo(temazo mazo){
 	}
 }
 
+void repartir_cartas(temazo *mazo1, temazo *mazo2)
+{
+	int i;
+	for(i=0;i<7;i++)	
+	{
+		cambiar_carta(mazo1, mazo2, 0)	
+	}
+}
+
 void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
 {
 	printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
