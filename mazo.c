@@ -2,6 +2,16 @@
 #include "carta.h"
 #include "mazos.h"
 
+
+
+int pos_tir(temazo mazo1, temazo mazo2)
+{
+	int pos_tir[108];
+	
+	
+	return(pos_tir);		
+}
+	
 void mostrar_mazo(temazo mazo){
 	int numcartas=mazo.n;
 	int i, j, files, fila;
