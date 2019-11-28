@@ -1,15 +1,4 @@
 #include "partida.h"
-typedef struct
-{
-	int n;			//numero de cartas en el mazo
-	tcarta mazo[MAXCART];	//cartas del mazo
-} temazo;
-
-typedef struct
-{
-	char nom[20];	//nombre jugador
-	temazo c;	//mazo del jugador
-} tjug;
 
 int cambio_turno(int turno, int jugadores, int sentido)
 //Sentido=0-->horari, Sentido=1-->antihorari
@@ -45,13 +34,15 @@ int jugadas(tcarta a, temazo b)
 		if (b.cartas.num==a.num || b.color== a.color)
 		{ //preguntar al gil i acabar codi//
 }
-int inicio(tjug t, int comprobacion)
+tpartida inicio()
 {
-i=0;
+	tpartida partida;
+	
+	i=0;
 	do
 	{
 		printf ("Cuantos jugadores? [3-5]: ");
-		scanf ("%d%*c", &tjug.num);	//ens falta nombrar la variable numjug=num 							jugadors als structs//
+		scanf ("%d%*c", &partida.numjugs);	//ens falta nombrar la variable numjug=num 							jugadors als structs//
 	}while (tjug.num>5);
 	printf ("Tu nombre: ");
 	do
@@ -67,5 +58,4 @@ int uno()				//La variable que ha d'entrar es la del resultat de la 						funcio
 	}
 }
 						 
-		
-
+// ronda();
