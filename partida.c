@@ -25,7 +25,7 @@ int cambio_turno(int turno, int jugadores, int sentido)
 			turno--;
 		}
 	}	
-return turno;
+	return turno;
 }
 
 tpartida inicio()
@@ -37,12 +37,16 @@ tpartida inicio()
 	{
 		printf ("Cuantos jugadores? [3-5]: ");
 		scanf ("%d%*c", &partida.numjugs);	//ens falta nombrar la variable numjug=num 							jugadors als structs//
-	}while (tjug.num>5);
+	} while (tjug.num>5);
+	
 	printf ("Tu nombre: ");
+	
 	do
 	{		
 		scanf ("%c", &tjug.nom[i]); 
 		i++;			
-	}while (tjug.nom!='\n');
-}							 
+	} while (tjug.nom!='\n');
+}
+
 // ronda();
+// finalizar_partida();
