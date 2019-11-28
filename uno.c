@@ -20,13 +20,19 @@ typedef struct
 {
 	char nom[20];
 	temazo c;
-	int uno; //0 si no te uno, 1 si te uno//
+	
 } tjug;
 
 typedef struct
 {
+	int njug;
+	tjug jug[5];
+}
+typedef struct
+{
 	int color;
 	int sentido; //0 horario, 1 antihorario//
-	int comprobacion; //0 cubert, 1 descubert//
+	int com; //0 cubert, 1 descubert//
+	int turno;
 }tpartida;
 
