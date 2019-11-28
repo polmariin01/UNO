@@ -43,12 +43,15 @@ void mostrar_mazo(temazo mazo){
 	}
 }
 
-void repartir_cartas(temazo *mazo1, temazo *mazo2)
+void repartir_cartas(tpartida *partida)
 {
-	int i;
-	for(i=0;i<7;i++)	
+	int i,0;
+	for(i=0;i<partida->jugs.njug;i++)
 	{
-		cambiar_carta(mazo1, mazo2, 0)	
+		for(k=0;k<7;k++)
+		{
+			cmbiar_carta(partida->.jugs.jug[i].c.mazo,partida->descartes,0);
+		}
 	}
 }
 
@@ -115,5 +118,9 @@ temazo iniciar_cartas()
 	return mazo;
 }
 
+void mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la time.h//
+{	
+	for(i=0;i<106;i++)
+	{
+		
 
-//mezclar mazo
