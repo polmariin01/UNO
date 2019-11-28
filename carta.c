@@ -3,19 +3,16 @@
 
 void mostrar_carta(tcarta carta)
 {
-	cambiar_color_fondo(0);
+	cambiar_color_fondo(carta.color);
 	switch (carta.num)
 	{
 		case 10:
-			cambiar_color_fondo(carta.color);
 			printf(" R ");
 			break;
 		case 11:
-			cambiar_color_fondo(carta.color);
 			printf(" S ");
 			break;
 		case 12:
-			cambiar_color_fondo(carta.color);
 			printf("+2 ");
 			break;
 		case 13:
@@ -25,7 +22,6 @@ void mostrar_carta(tcarta carta)
 			printf("W+4");
 			break;
 		default:
-			cambiar_color_fondo(carta.color);
 			printf(" %d ", carta.num);
 			break;
 	}
