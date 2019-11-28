@@ -27,7 +27,7 @@ typedef struct
 {
 	int njug;
 	tjug jug[5];
-}
+}tjugadores
 typedef struct
 {
 	int color;
