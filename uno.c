@@ -36,4 +36,6 @@ typedef struct
 	int com; //0 cubert, 1 descubert//
 	int turno;
 }tpartida;
+//wea
+
 
