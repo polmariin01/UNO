@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "carta.h"
 #include "mazos.h"
 
@@ -117,10 +118,15 @@ temazo iniciar_cartas()
 	}
 	return mazo;
 }
-
-void mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la time.h//
+temazo mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la time.h//
 {	
+	int a, b, i;
 	for(i=0;i<106;i++)
 	{
-		
-
+		a = rand() % 107;
+		mazo[a]=b;
+		mazo[a]=mazo[i];
+		mazo[i]=b;
+	}
+	return(mazo);
+}
