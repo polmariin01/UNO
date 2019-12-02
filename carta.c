@@ -38,9 +38,3 @@ int comparar_carta(tcarta carta1, tcarta carta2)
 		}
 	return(a);
 }
-
-
-
-
-
-
