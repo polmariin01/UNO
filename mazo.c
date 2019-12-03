@@ -51,7 +51,7 @@ void repartir_cartas(tpartida *partida)
 	{
 		for(k=0;k<7;k++)
 		{
-			cmbiar_carta(partida->.jugs.jug[i].c.mazo,partida->descartes,0);
+			cambiar_carta(partida->.jugs.jug[i].c.mazo,partida->descartes,0);
 		}
 	}
 }
@@ -118,6 +118,7 @@ temazo iniciar_cartas()
 	}
 	return mazo;
 }
+
 temazo mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la time.h//
 {	
 	int a, b, i;
