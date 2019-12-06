@@ -49,4 +49,7 @@ tpartida inicio()
 }
 
 // ronda();
+
+
+
 // finalizar_partida();
