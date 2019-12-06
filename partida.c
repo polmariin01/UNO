@@ -53,3 +53,10 @@ tpartida inicio()
 
 
 // finalizar_partida();
+
+
+void siguiente_jugador(tpertida *p)  
+{
+	p->turno=(p->turno+1)%p->jugs.njugs;
+}
+
