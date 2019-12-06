@@ -5,12 +5,22 @@
 
 
 
-int pos_tir(temazo mazo1, temazo mazo2)
+temazo pos_tir(temazo mazo1, tcarta carta1)
 {
-	int pos_tir[108];
-	
-	
-	return(pos_tir);		
+	temazo t;
+	tn.=0;
+	int i,k, a, b=0;
+	for(i=0;i<mazo1.n;i++)
+	{
+		a=comparar_cartas(carta1,mazo1.mazo[i])
+			if(a==1)
+			{
+				t.mazo[b]=mazo1.mazo[i];
+				b++;
+				t.n++;
+			}
+	}
+	return(t);		
 }
 	
 void mostrar_mazo(temazo mazo){
@@ -121,7 +131,8 @@ temazo iniciar_cartas()
 
 temazo mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la time.h//
 {	
-	int a, b, i;
+	int a, i;
+	tcarta b;
 	for(i=0;i<106;i++)
 	{
 		a = rand() % 107;
