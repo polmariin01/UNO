@@ -39,6 +39,5 @@ typedef struct
 	temazo descartes;
 	temazo robar;
 }tpartida;
-//wea
 
 
