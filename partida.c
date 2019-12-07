@@ -10,32 +10,31 @@ void espacio() {
 	}
 }
 
-int cambio_turno(int turno, int jugadores, int sentido)
+void cambio_turno(tpartida *p)
 //Sentido=0-->horari, Sentido=1-->antihorari
-{	
-	if(sentido==0)
+{
+	if(p->sentido==0)
 	{ 
-		if (turno==jugadores)
+		if (p->turno==p->jugs.njug-1)
 		{
-			turno=1;
+			p->turno=0;
 		}
 		else
 		{
-			turno++;
+			p->turno++;
 		}
 	}	
 	else 
 	{
-		if (turno==1)
+		if (p->turno==0)
 		{
-			turno=jugadores;
+			p->turno=p.jugs.njug-1;
 		}
 		else
 		{
-			turno--;
+			p->turno--;
 		}
-	}	
-	return turno;
+	}
 }
 
 int atzar (int a) {

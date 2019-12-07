@@ -20,7 +20,6 @@ typedef struct
 {
 	char nom[20];
 	temazo c;
-	
 } tjug;
 
 typedef struct
@@ -35,5 +34,9 @@ typedef struct
 	int sentido; //0 horario, 1 antihorario//
 	int com; //0 cubert, 1 descubert//
 	int turno;
+	int final;
+	tjugadores jugs;
+	temazo descartes;
+	temazo robar;
 }tpartida;
 
