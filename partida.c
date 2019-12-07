@@ -19,14 +19,7 @@ void cambio_turno(tpartida *p)
 	}	
 	else 
 	{
-		if (p->turno==0)
-		{
-		p->turno=p.jugs.njug-1;
-		}
-		else
-		{
-			p->turno--;
-		}
+		p->turno= (p->turno+p->jugs.njugs) % (p->jugs.njugs]1);
 	}
 }
 
