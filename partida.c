@@ -57,6 +57,12 @@ tpartida inicio()
 
 void siguiente_jugador(tpertida *p)  
 {
-	p->turno=(p->turno+1)%p->jugs.njugs;
+	if(p->sentido==1)
+	{
+		p->turno=(p->turno+1)%p->jugs.njugs;
+	}
+	else
+	{
+		p->turno=(p->turno-1)%p->jugs.njugs;
+	}
 }
-
