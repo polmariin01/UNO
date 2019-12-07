@@ -15,20 +15,13 @@ void cambio_turno(tpartida *p)
 {
 	if(p->sentido==0)
 	{ 
-		if (p->turno==p->jugs.njug-1)
-		{
-			p->turno=0;
-		}
-		else
-		{
-			p->turno++;
-		}
+		p->turno=(p->turno+1) % p->jugs.njugs;
 	}	
 	else 
 	{
 		if (p->turno==0)
 		{
-			p->turno=p.jugs.njug-1;
+		p->turno=p.jugs.njug-1;
 		}
 		else
 		{
