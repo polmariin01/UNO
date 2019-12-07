@@ -84,9 +84,12 @@ tpartida inicio()
 
 void ronda(tpartida p) {
 	if (p.com == 1) {
-	printf("\nMazo:\n");
-	printf("|");
+		printf("\nMazo:\n");
+		printf("|");
+		mostrar_carta(p.robar.mazo[p.robar.n-1]);
+		printf("|");
 	
+
 
 
 
