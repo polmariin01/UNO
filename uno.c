@@ -30,7 +30,6 @@ typedef struct
 
 typedef struct
 {
-	int color;
 	int sentido; //0 horario, 1 antihorario//
 	int com; //0 cubert, 1 descubert//
 	int turno;
@@ -41,3 +40,14 @@ typedef struct
 }tpartida;
 
 
+
+
+int main() {
+	tpartida p;
+
+
+	inicio();
+
+
+
+}

@@ -73,8 +73,20 @@ tpartida inicio()
 	//modo comprobacio fet
 
 
+
+
 	p.sentido=0;
-	
+	p.final=0;
+	p.
+
+
+	int numcart;
+	tcarta primera;
+	do {
+		numcart = atzar(108);
+		primera
+	} while ();
+	cambiar
 
 	return p;
 }
@@ -87,7 +99,8 @@ void ronda(tpartida p) {
 		printf("\nMazo:\n");
 		printf("|");
 		mostrar_carta(p.robar.mazo[p.robar.n-1]);
-		printf("|");
+		printf("|\n");
+		printf();
 	
 
 
@@ -114,3 +127,5 @@ void finalizar_partida(tpartida *p)
 	}
 }
 
+
+void especial ();
