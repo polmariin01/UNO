@@ -1,7 +1,9 @@
-int cambio_turno(int turno, int jugadores, int sentido);
-int jugadas(tcarta a, temazo b);
-int incicio(tjug t, int comprobacion); //no se si el nom al ser un vector de caracters pot anar dins d'aquesta funcio//
 void espacio();
-int uno(int );
+void cambio_turno(tpartida *p);
+int atzar (int a);
+tpartida incicio();
+void ronda(tpartida p);
+void finalizar_partida(tpartida *p);
 
+int jugadas(tcarta a, temazo b);
 

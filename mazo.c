@@ -6,7 +6,6 @@
 #include <time.h>
 
 
-
 temazo pos_tir(temazo mazo1, tcarta carta1)
 {
 	temazo t;

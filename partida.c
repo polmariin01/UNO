@@ -10,8 +10,10 @@ void espacio() {
 	}
 }
 
-void cambio_turno(tpartida *p)
+
+
 //Sentido=0-->horari, Sentido=1-->antihorari
+void cambio_turno(tpartida *p)
 {
 	if(p->sentido==0)
 	{ 
@@ -23,11 +25,17 @@ void cambio_turno(tpartida *p)
 	}
 }
 
+
+
+
 int atzar (int a) {
 	int b;	
 	a=rand() % b;
 	return a;
 }
+
+
+
 
 tpartida inicio()
 {
@@ -71,6 +79,9 @@ tpartida inicio()
 	return p;
 }
 
+
+
+
 void ronda(tpartida p) {
 	if (p.com == 1) {
 	printf("\nMazo:\n");
@@ -100,14 +111,3 @@ void finalizar_partida(tpartida *p)
 	}
 }
 
-void siguiente_jugador(tpertida *p)  
-{
-	if(p->sentido==1)
-	{
-		p->turno=(p->turno+(p->jugs.njugs-1))%p->jugs.njugs;
-	}
-	else
-	{
-		p->turno=(p->turno+((p->jugs.njugs+1)))%p->jugs.njugs;
-	}
-}
