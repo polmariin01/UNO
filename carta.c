@@ -1,5 +1,8 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "carta.h"
+#include "mazos.h"
+#include "partida.h"
 
 void mostrar_carta(tcarta carta)
 {

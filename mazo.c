@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "carta.h"
 #include "mazos.h"
+#include "partida.h"
+#include <time.h>
 
 
 
