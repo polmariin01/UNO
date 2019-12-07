@@ -52,17 +52,24 @@ tpartida inicio()
 
 
 
-// finalizar_partida();
-
+void finalizar_partida(tpartida *partida);
+{
+	int i;
+	for(i=0;i<p->jugs.njugs;i++)
+	{
+		if(p->jugs.jug[i].c.n==0)
+			p->final=0;
+	}
+}
 
 void siguiente_jugador(tpertida *p)  
 {
 	if(p->sentido==1)
 	{
-		p->turno=(p->turno+1)%p->jugs.njugs;
+		p->turno=(p->turno+(p->jugs.njugs-1))%p->jugs.njugs;
 	}
 	else
 	{
-		p->turno=(p->turno-1)%p->jugs.njugs;
+		p->turno=(p->turno+((p->jugs.njugs+1)))%p->jugs.njugs;
 	}
 }
