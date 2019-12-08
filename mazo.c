@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "carta.h"
-#include "mazos.h"
+#include "mazo.h"
 #include "partida.h"
 #include <time.h>
 
@@ -57,12 +57,12 @@ void mostrar_mazo(temazo mazo){
 
 void repartir_cartas(tpartida *partida)
 {
-	int i,0;
+	int i,k;
 	for(i=0;i<partida->jugs.njug;i++)
 	{
 		for(k=0;k<7;k++)
 		{
-			cambiar_carta(partida->.jugs.jug[i].c.mazo,partida->descartes,0);
+			cambiar_carta(partida->descartes,partida->.jugs.jug[i].c.mazo,0);
 		}
 	}
 }

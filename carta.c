@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "carta.h"
-#include "mazos.h"
+#include "mazo.h"
 #include "partida.h"
+
+
+
 
 void mostrar_carta(tcarta carta)
 {
@@ -23,6 +26,10 @@ void mostrar_carta(tcarta carta)
 			break;
 		case 14:
 			printf("W+4");
+			break;
+		case -1:
+			cambiar_color_letra(2);
+			printf("UNO");
 			break;
 		default:
 			printf(" %d ", carta.num);

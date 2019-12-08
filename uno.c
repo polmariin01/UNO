@@ -1,43 +1,8 @@
 #include <stdio.h>
-#include "cartas.c"
-#include "mazo.c"
-#include "partida"
-#define MAXCART 108
+#include "carta.h"
+#include "mazo.h"
+#include "partida.h"
 
-typedef struct
-{
-	int col;
-	char car;
-} tcarta;
-
-typedef struct
-{
-	int n;
-	tcarta mazo[MAXCART];
-} temazo;
-
-typedef struct
-{
-	char nom[20];
-	temazo c;
-} tjug;
-
-typedef struct
-{
-	int njug;
-	tjug jug[5];
-}tjugadores;
-
-typedef struct
-{
-	int sentido; //0 horario, 1 antihorario//
-	int com; //0 cubert, 1 descubert//
-	int turno;
-	int final;
-	tjugadores jugs;
-	temazo descartes;
-	temazo robar;
-}tpartida;
 
 
 
@@ -46,7 +11,7 @@ int main() {
 	tpartida p;
 
 
-	inicio();
+	p = inicio();
 
 
 

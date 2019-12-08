@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "carta.h"
-#include "mazos.h"
+#include "mazo.h"
 #include "partida.h"
 
 void espacio() {
@@ -50,7 +50,7 @@ tpartida inicio()
 	p.jugs.njug=nj;
 	//numero de jugadors fet
 	
-	printf ("Tu nombre: ");
+	printf ("Tu nombre? ");
 	scanf("%s", &p.jugs.jug[0].nom);
 	//nom jugador fet
 
@@ -77,16 +77,32 @@ tpartida inicio()
 
 	p.sentido=0;
 	p.final=0;
-	p.
+	//sentido i final fets
 
 
 	int numcart;
 	tcarta primera;
+	p.robar = iniciar_cartas();
+	p.robar = mezclar_mazo( p.robar);
+
+	repartir_cartas( *p);
+
+
+
+
+	p.robar.
+
 	do {
 		numcart = atzar(108);
-		primera
-	} while ();
-	cambiar
+		primera = p.robar.mazo[numcart];
+	} while (primera.num > 9);
+	cambiar_carta( p.robar, p.descartes, numcart);
+	//descartes i robar done
+
+
+
+
+
 
 	return p;
 }
@@ -128,4 +144,4 @@ void finalizar_partida(tpartida *p)
 }
 
 
-void especial ();
+//void especial();
