@@ -39,13 +39,13 @@ void mostrar_carta(tcarta carta)
 	default_attributes();
 }
 
-int comparar_carta(tcarta carta1, tcarta carta2)
-{	
+//int comparar_carta(tcarta carta1, tcarta carta2)
+//{	
 	//carta 1 es la de sobre, si la jugada es posible = 1 sino =0//
-	int a=0;
-	if((carta1.col==carta2.col)||(carta1.num==carta2.num)||(carta2.num>=13))
-		{
-		a=1;
-		}
-	return(a);
-}
+//	int a=0;
+//	if((carta1.col==carta2.col)||(carta1.num==carta2.num)||(carta2.num>=13))
+//		{
+//		a=1;
+//		}
+//	return(a);
+//}

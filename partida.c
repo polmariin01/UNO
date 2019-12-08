@@ -1,24 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "carta.h"
 #include "mazo.h"
 #include "partida.h"
 #include "colores.h"
 
+
 void espacio() {
-	for (int i=0; i<100; i++) {
+	for (int i=0; i<100; i++)
+	{
 		printf("\n");
 	}
 }
 
 
 
-//Sentido=0-->horari, Sentido=1-->antihorari
-void cambio_turno(tpartida *p)
-{
+void cambio_turno(tpartida *p) {
 	if(p->sentido==0)
 	{ 
-		p->turno =(p->turno + 1) % p->jugs.njugs;
+		p->turno = (p->turno + 1) % p->jugs.njugs;
 	}	
 	else 
 	{
@@ -38,17 +39,17 @@ int atzar (int a) {
 
 
 
-tpartida inicio()
-{
+tpartida inicio() {
 	tpartida p;
 
 	int nj;
-	do
-	{
+	do {
 		printf ("Cuantos jugadores? [3-5]: ");
 		scanf ("%d%*c", &nj);
 	} while (nj<3 || nj>5);
+
 	p.jugs.njug=nj;
+
 	//numero de jugadors fet
 	
 
@@ -139,6 +140,7 @@ void ronda(tpartida p) {
 	
 	cambiar_color_letra(4);
 	if (p.sentido == 0)
+	{
 		printf("HORARIO");
 	} else {
 		printf("ANTIHORARIO");
@@ -149,10 +151,12 @@ void ronda(tpartida p) {
 
 
 	int i;
-	for (i=0; i<p.jugs.njug; i++){
+	for (i=0; i<p.jugs.njug; i++)
+	{
 		printf("\n%s:\n",p.jugs.jug[i].nom);
 		mostrar_mazo(p.jugs.jug[i].c);
-		if (p.jugs.jug[i].c.n == 1) {
+		if (p.jugs.jug[i].c.n == 1)
+		{
 			cambiar_color_letra(3);
 			printf("** UNO **");
 			default_attributes();
@@ -162,20 +166,20 @@ void ronda(tpartida p) {
 
 
 
-void turno(tpartida *p){
+//void turno(tpartida *p){
 
 
-}
+//}
 
 
 
-void finalizar_partida(tpartida *p)
-{
+void finalizar_partida(tpartida *p) {
 	int i;
 	for(i=0;i<p->jugs.njugs;i++)
 	{
-		if(p->jugs.jug[i].c.n==0)
+		if(p->jugs.jug[i].c.n==0){
 			p->fi=1;
+		}
 	}
 }
 

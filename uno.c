@@ -13,8 +13,10 @@ int main() {
 
 	p = inicio();
 
-	while (p.fi==0) {
-		ronda (&p);
+	while (p.fi==0)
+	{
+		ronda(p);
+		//turno(&p);
 		finalizar_partida(&p);
 	}
 
