@@ -151,14 +151,25 @@ void ronda(tpartida p) {
 
 
 	int i;
+
+
 	for (i=0; i<p.jugs.njug; i++)
 	{
 		printf("\n%s:\n",p.jugs.jug[i].nom);
-		mostrar_mazo(p.jugs.jug[i].c);
+		if (p.com == 1 || i=0) {
+			mostrar_mazo(p.jugs.jug[i].c);
+		} else {
+			printf("|");
+			for (i=0; i<p.jugs.jug[i].c.n; i++) {
+				mostrar_carta(null);
+				printf("|");
+			}
+		}
+
 		if (p.jugs.jug[i].c.n == 1)
 		{
 			cambiar_color_letra(3);
-			printf("** UNO **");
+			printf(" ** UNO **");
 			default_attributes();
 		}
 	}
@@ -166,10 +177,50 @@ void ronda(tpartida p) {
 
 
 
-//void turno(tpartida *p){
+void turno(tpartida *p){
+	int i, tria;
+	temazo posible;
+	tcarta setira;
+
+	cambiar_color_letra(2);	
+	printf("Turno %s: ");
+	default_attributes();
+	printf("Jugades posibles: ");
+	posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
+	
+	if (posible.n>0) {	//pot tirar carta
+
+		if (p->turno == 0) { //tires tu
+			for (i=0; i<posible.n; i++) {		
+				printf("%d(|", i, );
+				mostrar_carta( posible.mazo[i]);
+				printf("|) ");			
+			}
+			
+			
+			do {
+				printf("Que carta tiras? [0-%d]: ", posible.n-1);
+				scanf("%d%*c", &tria);
+			} while (tria>=0 || tria<posible.n);
+
+			setira=posible[tria];
 
 
-//}
+		} else { //tiren robots
+			
+
+
+		//a choice has to be made
+	 
+		}
+
+		printf("Tira: ");
+		mostrar_carta(setira);
+	
+	} else { //no pot tirar cap carta
+
+	
+}
 
 
 
