@@ -6,7 +6,7 @@
 #include "colores.h"
 
 void espacio() {
-	for (int i=0, i<100, i++) {
+	for (int i=0; i<100; i++) {
 		printf("\n");
 	}
 }
@@ -18,11 +18,11 @@ void cambio_turno(tpartida *p)
 {
 	if(p->sentido==0)
 	{ 
-		p->turno=(p->turno+1) % p->jugs.njugs;
+		p->turno =(p->turno + 1) % p->jugs.njugs;
 	}	
 	else 
 	{
-		p->turno= (p->turno+p->jugs.njugs) % (p->jugs.njugs]1);
+		p->turno = (p->turno + p->jugs.njugs) % (p->jugs.njugs + 1);
 	}
 }
 
@@ -51,14 +51,25 @@ tpartida inicio()
 	p.jugs.njug=nj;
 	//numero de jugadors fet
 	
+
 	printf ("Tu nombre? ");
 	scanf("%s", &p.jugs.jug[0].nom);
 	//nom jugador fet
 
+
 	for (int i=1; i<nj; i++) {
-		p.jugs.jug[i].
+		p.jugs.jug[i].nom[1]="R";
+		p.jugs.jug[i].nom[2]="o";
+		p.jugs.jug[i].nom[3]="b";
+		p.jugs.jug[i].nom[4]="o";
+		p.jugs.jug[i].nom[5]="t";
+		p.jugs.jug[i].nom[6]=48+i;
+		p.jugs.jug[i].nom[7]="\0";
+		
+		p.jugs.jug[i].c.n=0;
 	}
-	//noms robots fets
+	//noms robots i robots fets
+
 
 	char sino;
 	do {
@@ -81,9 +92,9 @@ tpartida inicio()
 	//sentido i final fets
 
 
-	int numcart;
-	tcarta primera;
+
 	p.robar = iniciar_cartas();
+	p.robar.n = 108;
 	p.robar = mezclar_mazo( p.robar);
 
 	repartir_cartas( *p);
@@ -91,13 +102,16 @@ tpartida inicio()
 
 
 
-	p.robar.
 
+	int numcart;
+	tcarta primera;
 	do {
 		numcart = atzar(108);
 		primera = p.robar.mazo[numcart];
 	} while (primera.num > 9);
+
 	cambiar_carta( p.robar, p.descartes, numcart);
+
 	//descartes i robar done
 
 

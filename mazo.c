@@ -10,23 +10,23 @@
 temazo pos_tir(temazo mazo1, tcarta carta1)
 {
 	temazo t;
-	tn.=0;
+	t.n=0;
 	int i,k, a, b=0;
 	for(i=0; i<mazo1.n; i++)
 	{
-		a=comparar_cartas(carta1,mazo1.mazo[i])
-			if(a==1)
-			{
-				t.mazo[b]=mazo1.mazo[i];
-				b++;
-				t.n++;
-			}
+		a=comparar_cartas(carta1,mazo1.mazo[i]);
+		if(a==1)
+		{
+			t.mazo[b]=mazo1.mazo[i];
+			b++;
+			t.n++;
+		}
 	}
 	return(t);		
 }
 	
 void mostrar_mazo(temazo mazo){
-	int numcartas=mazo.n;
+	int numcartes=mazo.n;
 	int i, j, files, fila;
 	files=numcartes/20;
 	if (numcartes%20!=0) {
@@ -63,7 +63,7 @@ void repartir_cartas(tpartida *partida)
 	{
 		for(k=0;k<7;k++)
 		{
-			cambiar_carta(partida->descartes,partida->.jugs.jug[i].c.mazo,0);
+			cambiar_carta(partida->descartes,partida->jugs.jug[i].c.mazo,0);
 		}
 	}
 }
@@ -140,7 +140,7 @@ temazo mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la t
 	{
 		a = rand() % 107;
 		mazo.mazo[a]=b;
-		mazo.mazo[a]=mazo[i];
+		mazo.mazo[a]=mazo.mazo[i];
 		mazo.mazo[i]=b;
 	}
 	return(mazo);
