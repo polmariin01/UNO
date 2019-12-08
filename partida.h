@@ -47,7 +47,7 @@ typedef struct
 void espacio();
 void cambio_turno(tpartida *p);
 int atzar (int a);
-tpartida incicio();
+tpartida inicio();
 void ronda(tpartida p);
 void finalizar_partida(tpartida *p);
 

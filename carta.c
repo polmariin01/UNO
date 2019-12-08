@@ -3,6 +3,7 @@
 #include "carta.h"
 #include "mazo.h"
 #include "partida.h"
+#include "colores.h"
 
 
 

@@ -4,6 +4,7 @@
 #include "mazo.h"
 #include "partida.h"
 #include <time.h>
+#include "colores.h"
 
 
 temazo pos_tir(temazo mazo1, tcarta carta1)
@@ -11,7 +12,7 @@ temazo pos_tir(temazo mazo1, tcarta carta1)
 	temazo t;
 	tn.=0;
 	int i,k, a, b=0;
-	for(i=0;i<mazo1.n;i++)
+	for(i=0; i<mazo1.n; i++)
 	{
 		a=comparar_cartas(carta1,mazo1.mazo[i])
 			if(a==1)
@@ -58,7 +59,7 @@ void mostrar_mazo(temazo mazo){
 void repartir_cartas(tpartida *partida)
 {
 	int i,k;
-	for(i=0;i<partida->jugs.njug;i++)
+	for(i=0; i<partida->jugs.njug; i++)
 	{
 		for(k=0;k<7;k++)
 		{
@@ -69,6 +70,7 @@ void repartir_cartas(tpartida *partida)
 
 void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
 {
+	int i;
 	printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
 	printf("\nMazo 1 al principio:\n");
 	mostrar_mazo(mazo1);
@@ -81,7 +83,7 @@ void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
 	
 	//quitar carta de mazo 1
 
-	for (i=pos; i<mazo1.n-1;i++) {
+	for (i=pos; i<mazo1.n-1; i++) {
 		mazo1.mazo[i]=mazo1.mazo[i+1];
 	} 
 	mazo1.n--;
@@ -137,9 +139,9 @@ temazo mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la t
 	for(i=0;i<106;i++)
 	{
 		a = rand() % 107;
-		mazo[a]=b;
-		mazo[a]=mazo[i];
-		mazo[i]=b;
+		mazo.mazo[a]=b;
+		mazo.mazo[a]=mazo[i];
+		mazo.mazo[i]=b;
 	}
 	return(mazo);
 }
