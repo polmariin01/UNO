@@ -11,9 +11,11 @@
 int main() {
 	tpartida p;
 
-
 	p = inicio();
 
+	while (p.fi==0) {
+		ronda (&p);
+	}
 
 
 }

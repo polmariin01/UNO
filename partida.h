@@ -36,7 +36,7 @@ typedef struct
 	int sentido; //0 horario, 1 antihorario//
 	int com; //0 cubert, 1 descubert//
 	int turno;
-	int final;
+	int fi;
 	tjugadores jugs;
 	temazo descartes;
 	temazo robar;

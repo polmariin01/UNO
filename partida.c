@@ -57,7 +57,7 @@ tpartida inicio()
 	//nom jugador fet
 
 
-	for (int i=1; i<nj; i++) {
+	for (int i=1; i<nj-1; i++) {
 		p.jugs.jug[i].nom[1]="R";
 		p.jugs.jug[i].nom[2]="o";
 		p.jugs.jug[i].nom[3]="b";
@@ -85,22 +85,15 @@ tpartida inicio()
 	//modo comprobacio fet
 
 
-
-
 	p.sentido=0;
 	p.final=0;
 	//sentido i final fets
 
 
-
 	p.robar = iniciar_cartas();
-	p.robar.n = 108;
 	p.robar = mezclar_mazo( p.robar);
 
 	repartir_cartas( *p);
-
-
-
 
 
 	int numcart;
@@ -112,12 +105,12 @@ tpartida inicio()
 
 	cambiar_carta( p.robar, p.descartes, numcart);
 
-	//descartes i robar done
+	//descartes i robar
 
 
+	p.turno = atzar(p.jugs.njug);
 
-
-
+	//turno al azar
 
 	return p;
 }
