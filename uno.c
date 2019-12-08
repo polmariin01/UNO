@@ -15,6 +15,7 @@ int main() {
 
 	while (p.fi==0) {
 		ronda (&p);
+		finalizar_partida(&p);
 	}
 
 

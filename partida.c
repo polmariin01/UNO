@@ -86,7 +86,7 @@ tpartida inicio()
 
 
 	p.sentido=0;
-	p.final=0;
+	p.fi=0;
 	//sentido i final fets
 
 
@@ -119,23 +119,51 @@ tpartida inicio()
 
 
 void ronda(tpartida p) {
+	tcarta null = {0,-1};
+
+	printf("\nMazo:\n");
+
 	if (p.com == 1) {
-		printf("\nMazo:\n");
-		printf("|");
-		mostrar_carta(p.robar.mazo[p.robar.n-1]);
-		printf("|\n");
-		printf();
-	
-
-
-
-
+		mostrar_mazo(p.robar);
 	} else {
+		printf("|");
+		mostrar_carta(null);
+		printf("| (%d)\n", p.robar.n);
+	}
+	//imprime mazo
 
-
-
+	printf("Mazo Descartes:\n");
+	printf("|");
+	mostrar_carta(p.descartes.mazo[p.descartes.n-1]);
+	printf("| (%d) Sentido: \n", p.descartes.n);
+	
+	cambiar_color_letra(4);
+	if (p.sentido == 0)
+		printf("HORARIO");
+	} else {
+		printf("ANTIHORARIO");
 
 	}
+	default_attributes();
+	//imprime descartes
+
+
+	int i;
+	for (i=0; i<p.jugs.njug; i++){
+		printf("\n%s:\n",p.jugs.jug[i].nom);
+		mostrar_mazo(p.jugs.jug[i].c);
+		if (p.jugs.jug[i].c.n == 1) {
+			cambiar_color_letra(3);
+			printf("** UNO **");
+			default_attributes();
+		}
+	}
+}
+
+
+
+void turno(tpartida *p){
+
 
 }
 
@@ -147,7 +175,7 @@ void finalizar_partida(tpartida *p)
 	for(i=0;i<p->jugs.njugs;i++)
 	{
 		if(p->jugs.jug[i].c.n==0)
-			p->final=0;
+			p->fi=1;
 	}
 }
 

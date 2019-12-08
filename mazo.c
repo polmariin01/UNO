@@ -24,7 +24,10 @@ temazo pos_tir(temazo mazo1, tcarta carta1)
 	}
 	return(t);		
 }
-	
+
+
+
+
 void mostrar_mazo(temazo mazo){
 	int numcartes=mazo.n;
 	int i, j, files, fila;
@@ -56,6 +59,8 @@ void mostrar_mazo(temazo mazo){
 	}
 }
 
+
+
 void repartir_cartas(tpartida *partida)
 {
 	int i,k;
@@ -68,7 +73,9 @@ void repartir_cartas(tpartida *partida)
 	}
 }
 
-void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
+
+
+void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos)
 {
 	int i;
 	printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
@@ -79,19 +86,19 @@ void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
 
 	//carta que s'ha de moure, copia auxiliar
 	tcarta c;
-	c=mazo1.mazo[pos];
+	c=mazo1->mazo[pos];
 	
 	//quitar carta de mazo 1
 
-	for (i=pos; i<mazo1.n-1; i++) {
-		mazo1.mazo[i]=mazo1.mazo[i+1];
+	for (i=pos; i<mazo1->n-1; i++) {
+		mazo1->mazo[i]=mazo1->mazo[i+1];
 	} 
-	mazo1.n--;
+	mazo1->n--;
 
 	//poner carta en mazo 2
 	
-	mazo2.mazo[mazo2.n]=c;
-	mazo2.n++;
+	mazo2->mazo[mazo2->n]=c;
+	mazo2->n++;
 
 	//wea de prueba
 	printf("\n\n\nMazo 1 al final:\n");
@@ -99,6 +106,8 @@ void cambiar_carta(temazo mazo1, temazo mazo2, int pos)
 	printf("\nMazo 2 al final:\n");
 	mostrar_mazo(mazo2);
 }
+
+
 
 temazo iniciar_cartas()
 {
@@ -113,6 +122,7 @@ temazo iniciar_cartas()
 				mazo.mazo[pos].num=j;
 				mazo.n++;
 				pos++;
+				//0 nomes hi hi ha una de cada color
 			}
 			mazo.mazo[pos].col=i;
 			mazo.mazo[pos].num=j;
@@ -120,6 +130,7 @@ temazo iniciar_cartas()
 			pos++;
 		}
 	}
+	//crea 2 cartas de cada color de numeros del 1 al 9, R, S i +2
 
 	for (i=0; i<2; i++) {
 		for(j=0; j<4; j++) {
@@ -129,10 +140,13 @@ temazo iniciar_cartas()
 			mazo.n++;
 		}
 	}
+	//crea les cartes que falten, W+4 i W (4 de cada)
 	return mazo;
 }
 
-temazo mezclar_mazo(temazo mazo)  //s'ha d'incloure la llibreria stdlib.h i la time.h//
+
+
+temazo mezclar_mazo(temazo mazo) 
 {	
 	int a, i;
 	tcarta b;

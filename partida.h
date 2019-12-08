@@ -37,6 +37,7 @@ typedef struct
 	int com; //0 cubert, 1 descubert//
 	int turno;
 	int fi;
+	int color; // 1-4
 	tjugadores jugs;
 	temazo descartes;
 	temazo robar;
@@ -49,6 +50,7 @@ void cambio_turno(tpartida *p);
 int atzar (int a);
 tpartida inicio();
 void ronda(tpartida p);
+void turno(tpartida *p)
 void finalizar_partida(tpartida *p);
 
 //void especial();
