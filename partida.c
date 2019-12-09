@@ -19,11 +19,11 @@ void espacio() {
 void cambio_turno(tpartida *p) {
 	if(p->sentido==0)
 	{ 
-		p->turno = (p->turno + 1) % p->jugs.njugs;
+		p->turno = (p->turno + 1) % p->jugs.njug;
 	}	
 	else 
 	{
-		p->turno = (p->turno + p->jugs.njugs) % (p->jugs.njugs + 1);
+		p->turno = (p->turno + p->jugs.njug) % (p->jugs.njug + 1);
 	}
 }
 
@@ -54,18 +54,18 @@ tpartida inicio() {
 	
 
 	printf ("Tu nombre? ");
-	scanf("%s", &p.jugs.jug[0].nom);
+	scanf("%s", &p.jugs.jug[0].nom[0]);
 	//nom jugador fet
 
 
 	for (int i=1; i<nj-1; i++) {
-		p.jugs.jug[i].nom[1]="R";
-		p.jugs.jug[i].nom[2]="o";
-		p.jugs.jug[i].nom[3]="b";
-		p.jugs.jug[i].nom[4]="o";
-		p.jugs.jug[i].nom[5]="t";
+		p.jugs.jug[i].nom[1]='R';
+		p.jugs.jug[i].nom[2]='o';
+		p.jugs.jug[i].nom[3]='b';
+		p.jugs.jug[i].nom[4]='o';
+		p.jugs.jug[i].nom[5]='t';
 		p.jugs.jug[i].nom[6]=48+i;
-		p.jugs.jug[i].nom[7]="\0";
+		p.jugs.jug[i].nom[7]='\0';
 		
 		p.jugs.jug[i].c.n=0;
 	}
@@ -94,7 +94,7 @@ tpartida inicio() {
 	p.robar = iniciar_cartas();
 	p.robar = mezclar_mazo( p.robar);
 
-	repartir_cartas( *p);
+	repartir_cartas( &p);
 
 
 	int numcart;
@@ -156,7 +156,7 @@ void ronda(tpartida p) {
 	for (i=0; i<p.jugs.njug; i++)
 	{
 		printf("\n%s:\n",p.jugs.jug[i].nom);
-		if (p.com == 1 || i=0) {
+		if (p.com == 1 || i==0) {
 			mostrar_mazo(p.jugs.jug[i].c);
 		} else {
 			printf("|");
@@ -183,7 +183,7 @@ void turno(tpartida *p){
 	tcarta setira;
 
 	cambiar_color_letra(2);	
-	printf("Turno %s: ");
+	printf("Turno %s: ", p->jugs.jug[p->turno].nom);
 	default_attributes();
 	printf("Jugades posibles: ");
 	posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
@@ -192,7 +192,7 @@ void turno(tpartida *p){
 
 		if (p->turno == 0) { //tires tu
 			for (i=0; i<posible.n; i++) {		
-				printf("%d(|", i, );
+				printf("%d(|", i);
 				mostrar_carta( posible.mazo[i]);
 				printf("|) ");			
 			}
@@ -203,7 +203,7 @@ void turno(tpartida *p){
 				scanf("%d%*c", &tria);
 			} while (tria>=0 || tria<posible.n);
 
-			setira=posible[tria];
+			setira=posible.mazo[tria];
 
 
 		} else { //tiren robots
@@ -226,7 +226,7 @@ void turno(tpartida *p){
 
 void finalizar_partida(tpartida *p) {
 	int i;
-	for(i=0;i<p->jugs.njugs;i++)
+	for(i=0;i<p->jugs.njug;i++)
 	{
 		if(p->jugs.jug[i].c.n==0){
 			p->fi=1;
