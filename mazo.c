@@ -68,7 +68,7 @@ void repartir_cartas(tpartida *partida)
 	{
 		for(k=0;k<7;k++)
 		{
-			cambiar_carta(partida->descartes,partida->jugs.jug[i].c.mazo,0);
+			cambiar_carta(&partida->descartes,&partida->jugs.jug[i].c.mazo,0);
 		}
 	}
 }
