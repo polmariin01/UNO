@@ -33,7 +33,7 @@ void mostrar_mazo(temazo mazo){
 	int i, j, files, fila;
 	files=numcartes/20;
 	if (numcartes%20!=0) {
-		numcartes++;
+		files++;
 	}
 
 	//imprimir files de 20 cartes
@@ -53,23 +53,9 @@ void mostrar_mazo(temazo mazo){
 		}
 		printf("\n");
 		if (i<files-1){
-			printf("+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+");
+			printf("+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+");
 		}
 		printf("\n");
-	}
-}
-
-
-
-void repartir_cartas(tpartida *partida)
-{
-	int i,k;
-	for(i=0; i<partida->jugs.njug; i++)
-	{
-		for(k=0;k<7;k++)
-		{
-			cambiar_carta(&partida->descartes,&partida->jugs.jug[i].c.mazo,0);
-		}
 	}
 }
 
@@ -78,11 +64,11 @@ void repartir_cartas(tpartida *partida)
 void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos)
 {
 	int i;
-	printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
+	/*printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
 	printf("\nMazo 1 al principio:\n");
-	mostrar_mazo(mazo1);
+	mostrar_mazo(&mazo1);
 	printf("\nMazo 2 al principio:\n");
-	mostrar_mazo(mazo2);
+	mostrar_mazo(&mazo2);*/
 
 	//carta que s'ha de moure, copia auxiliar
 	tcarta c;
@@ -100,13 +86,26 @@ void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos)
 	mazo2->mazo[mazo2->n]=c;
 	mazo2->n++;
 
-	//wea de prueba
+	/*wea de prueba
 	printf("\n\n\nMazo 1 al final:\n");
 	mostrar_mazo(mazo1);
 	printf("\nMazo 2 al final:\n");
-	mostrar_mazo(mazo2);
+	mostrar_mazo(mazo2);*/
 }
 
+
+
+void repartir_cartas(tpartida *partida)
+{
+	int i,k;
+	for(i=0; i<partida->jugs.njug; i++)
+	{
+		for(k=0;k<7;k++)
+		{
+			cambiar_carta(&(partida->descartes), &(partida->jugs.jug[i].c), 0);
+		}
+	}
+}
 
 
 temazo iniciar_cartas()
