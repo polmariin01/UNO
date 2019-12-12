@@ -14,7 +14,7 @@ temazo pos_tir(temazo mazo1, tcarta carta1)
 	int i,k, a, b=0;
 	for(i=0; i<mazo1.n; i++)
 	{
-		a=comparar_cartas(carta1,mazo1.mazo[i]);
+		a=comparar_carta(carta1,mazo1.mazo[i]);
 		if(a==1)
 		{
 			t.mazo[b]=mazo1.mazo[i];
