@@ -12,7 +12,7 @@ void mostrar_mazo(temazo mazo);
 void repartir_cartas(tpartida *partida);
 void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos); //punteros arreglats
 temazo iniciar_cartas();
-temazo mezclar_mazo(temazo mazo);
+void mezclar_mazo(temazo *mazo);
 
 #endif
 

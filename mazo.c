@@ -102,7 +102,7 @@ void repartir_cartas(tpartida *partida)
 	{
 		for(k=0;k<7;k++)
 		{
-			cambiar_carta(&(partida->descartes), &(partida->jugs.jug[i].c), 0);
+			cambiar_carta(&(partida->robar), &(partida->jugs.jug[i].c), 0);
 		}
 	}
 }
@@ -146,16 +146,17 @@ temazo iniciar_cartas()
 
 
 
-temazo mezclar_mazo(temazo mazo) 
+void mezclar_mazo(temazo *mazo) 
 {	
-	int a, i;
-	tcarta b;
-	for(i=0;i<106;i++)
+	int a, i, b;
+	tcarta c;
+	for(i=0;i< mazo->n ;i++)
 	{
-		a = rand() % 107;
-		mazo.mazo[a]=b;
-		mazo.mazo[a]=mazo.mazo[i];
-		mazo.mazo[i]=b;
+		a = atzar(mazo->n);
+		b = atzar(mazo->n);
+
+		c = mazo->mazo[a];
+		mazo->mazo[a]=mazo->mazo[b];
+		mazo->mazo[b]=c;
 	}
-	return(mazo);
 }

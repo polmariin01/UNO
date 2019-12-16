@@ -54,20 +54,21 @@ tpartida inicio() {
 	
 
 	printf ("Tu nombre? ");
-	scanf("%s", &p.jugs.jug[0].nom[0]);
+	scanf("%s%*c", &p.jugs.jug[0].nom[0]);
 	//nom jugador fet
 
 
-	for (int i=1; i<nj-1; i++) {
-		p.jugs.jug[i].nom[1]='R';
-		p.jugs.jug[i].nom[2]='o';
-		p.jugs.jug[i].nom[3]='b';
-		p.jugs.jug[i].nom[4]='o';
-		p.jugs.jug[i].nom[5]='t';
-		p.jugs.jug[i].nom[6]=48+i;
-		p.jugs.jug[i].nom[7]='\0';
+	for (int i=1; i<nj; i++) {
+		p.jugs.jug[i].nom[0]='R';
+		p.jugs.jug[i].nom[1]='o';
+		p.jugs.jug[i].nom[2]='b';
+		p.jugs.jug[i].nom[3]='o';
+		p.jugs.jug[i].nom[4]='t';
+		p.jugs.jug[i].nom[5]=48+i;
+		p.jugs.jug[i].nom[6]='\0';
 		
 		p.jugs.jug[i].c.n=0;
+
 	}
 	//noms robots i robots fets
 
@@ -75,8 +76,8 @@ tpartida inicio() {
 	char sino;
 	do {
 		printf("Quieres ejecutar en modo COMPROBACION? [s/n]: ");
-		scanf("%c%*c", &sino);
-	} while (sino!='s' && sino!='S' && sino!='n' && sino!='S');
+		scanf("%c", &sino);
+	} while (sino!='s' && sino!='S' && sino!='n' && sino!='N');
 
 	if (sino=='s' || sino=='S') {
 		p.com=1;
@@ -92,11 +93,28 @@ tpartida inicio() {
 
 
 	p.robar = iniciar_cartas();
-	p.robar = mezclar_mazo( p.robar);
+
+	//printf("\n\nMazo iniciado\n");
+	//mostrar_mazo(p.robar);
+	
+	mezclar_mazo( &(p.robar)); //no funciona, Gil se encarga
+
+//	printf("\n\nMazo mezclado\n");
+//	mostrar_mazo(p.robar);
 
 	repartir_cartas( &p);
 
+//	printf("\n\nMazo repartido\n");
+//	mostrar_mazo(p.robar);
 
+	/*
+	int i;
+	for (i=0; i<nj; i++) {
+		printf("\n%s\n", p.jugs.jug[i].nom);
+		mostrar_mazo(p.jugs.jug[i].c);
+	}
+	*/
+	
 	int numcart;
 	tcarta primera;
 	do {
@@ -173,6 +191,7 @@ void ronda(tpartida p) {
 			default_attributes();
 		}
 	}
+	scanf("%*c");
 }
 
 

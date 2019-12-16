@@ -11,11 +11,13 @@ int main() {
 
 	p = inicio();
 
+	mostrar_mazo(p.robar);
 	while (p.fi==0)
 	{
-		ronda(p);
+		//printf("La wea ronda");
+		//ronda(p);
 		//turno(&p);
-		finalizar_partida(&p);
+		//finalizar_partida(&p);
 	}
 
 
