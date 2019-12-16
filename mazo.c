@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "carta.h"
 #include "mazo.h"
 #include "partida.h"
-#include <time.h>
 #include "colores.h"
 
 
@@ -140,6 +140,7 @@ temazo iniciar_cartas()
 		}
 	}
 	//crea les cartes que falten, W+4 i W (4 de cada)
+
 	return mazo;
 }
 

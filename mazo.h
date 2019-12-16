@@ -1,12 +1,11 @@
-#ifndef CARTA_H
-#define CARTA_H
+#ifndef MAZO_H
+#define MAZO_H
 
 
 #include <stdio.h>
 #include "carta.h"
 #include "partida.h"
 
-#define MAZO_H
 
 temazo pos_tir(temazo mazo1, tcarta carta1);
 void mostrar_mazo(temazo mazo);

@@ -104,7 +104,7 @@ tpartida inicio() {
 		primera = p.robar.mazo[numcart];
 	} while (primera.num > 9);
 
-	cambiar_carta( p.robar, p.descartes, numcart);
+	cambiar_carta( &(p.robar), &(p.descartes), numcart);
 
 	//descartes i robar
 
@@ -217,18 +217,21 @@ void turno(tpartida *p){
 		printf("Tira: ");
 		mostrar_carta(setira);
 	
-	} else { //no pot tirar cap carta
+	} 
+	//else { //no pot tirar cap carta
 
 	
 }
 
 
 
-void finalizar_partida(tpartida *p) {
+void finalizar_partida(tpartida *p)
+{
 	int i;
 	for(i=0;i<p->jugs.njug;i++)
 	{
-		if(p->jugs.jug[i].c.n==0){
+		if(p->jugs.jug[i].c.n==0)
+		{
 			p->fi=1;
 		}
 	}
