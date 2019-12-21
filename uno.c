@@ -15,10 +15,9 @@ int main() {
 
 	while (p.fi==0)
 	{
-		//printf("La wea ronda");
-		//ronda(p);
-		//turno(&p);
-		//finalizar_partida(&p);
+		ronda(p);
+		turno(&p);
+		finalizar_partida(&p);
 	}
 
 

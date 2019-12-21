@@ -230,19 +230,27 @@ void turno(tpartida *p){
 			setira=posible.mazo[tria];
 
 
-		} else { //tiren robots
-			
-
+		} else { 
+			for (i=0; i<posible.n; i++) {
+				printf("%d(|", i);
+				mostrar_carta( posible.mazo[i]);
+				printf("|) ");	 
+			}
+			setira=posible.mazo[0];
+		}	
 
 		//a choice has to be made
 	 
-		}
+		
 
 		printf("Tira: ");
 		mostrar_carta(setira);
 	
 	} 
-	//else { //no pot tirar cap carta
+	 else{ }
+		
+			
+		
 
 	
 }
