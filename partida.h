@@ -51,7 +51,7 @@ void cambio_turno(tpartida *p);
 int atzar (int a);
 tpartida inicio();
 void ronda(tpartida p);
-//void turno(tpartida *p)
+void turno(tpartida *p);
 void finalizar_partida(tpartida *p);
 
 //void especial();

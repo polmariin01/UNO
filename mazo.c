@@ -64,12 +64,7 @@ void mostrar_mazo(temazo mazo){
 void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos)
 {
 	int i;
-	/*printf("\nPara ver si ha funcionado (dentro de la funcion)\n");
-	printf("\nMazo 1 al principio:\n");
-	mostrar_mazo(&mazo1);
-	printf("\nMazo 2 al principio:\n");
-	mostrar_mazo(&mazo2);*/
-
+	
 	//carta que s'ha de moure, copia auxiliar
 	tcarta c;
 	c=mazo1->mazo[pos];
@@ -85,12 +80,6 @@ void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos)
 	
 	mazo2->mazo[mazo2->n]=c;
 	mazo2->n++;
-
-	/*wea de prueba
-	printf("\n\n\nMazo 1 al final:\n");
-	mostrar_mazo(mazo1);
-	printf("\nMazo 2 al final:\n");
-	mostrar_mazo(mazo2);*/
 }
 
 
@@ -153,7 +142,9 @@ void mezclar_mazo(temazo *mazo)
 	for(i=0;i< mazo->n ;i++)
 	{
 		a = atzar(mazo->n);
-		b = atzar(mazo->n);
+		do {
+			b = atzar(mazo->n);
+		} while (b==a);
 
 		c = mazo->mazo[a];
 		mazo->mazo[a]=mazo->mazo[b];

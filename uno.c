@@ -8,10 +8,11 @@
 
 int main() {
 	tpartida p;
+	int i, a;
 
 	p = inicio();
 
-	mostrar_mazo(p.robar);
+
 	while (p.fi==0)
 	{
 		//printf("La wea ronda");

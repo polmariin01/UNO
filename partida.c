@@ -32,8 +32,8 @@ void cambio_turno(tpartida *p) {
 
 int atzar (int a) {
 	int b;	
-	a=rand() % b;
-	return a;
+	b=rand() % a;
+	return b;
 }
 
 
@@ -91,34 +91,39 @@ tpartida inicio() {
 	p.fi=0;
 	//sentido i final fets
 
-
+	
 	p.robar = iniciar_cartas();
 
-	//printf("\n\nMazo iniciado\n");
-	//mostrar_mazo(p.robar);
+	/*
+	printf("\n\nMazo iniciado\n");
+	mostrar_mazo(p.robar);
 	
 	mezclar_mazo( &(p.robar)); //no funciona, Gil se encarga
 
-//	printf("\n\nMazo mezclado\n");
-//	mostrar_mazo(p.robar);
+	printf("\n\nMazo mezclado\n");
+	mostrar_mazo(p.robar);
 
 	repartir_cartas( &p);
 
-//	printf("\n\nMazo repartido\n");
-//	mostrar_mazo(p.robar);
+	printf("\n\nMazo repartido\n");
+	mostrar_mazo(p.robar);
+	*/
 
-	/*
+	mezclar_mazo( &(p.robar));
+	repartir_cartas( &p);
+
 	int i;
 	for (i=0; i<nj; i++) {
 		printf("\n%s\n", p.jugs.jug[i].nom);
 		mostrar_mazo(p.jugs.jug[i].c);
 	}
-	*/
+	
 	
 	int numcart;
 	tcarta primera;
+
 	do {
-		numcart = atzar(108);
+		numcart = atzar(p.robar.n);
 		primera = p.robar.mazo[numcart];
 	} while (primera.num > 9);
 
