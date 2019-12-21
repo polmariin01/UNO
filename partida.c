@@ -121,7 +121,7 @@ tpartida inicio() {
 void ronda(tpartida p) {
 	tcarta null = {0,-1};
 
-	printf("\nMazo:\n");
+	printf("Mazo:\n");
 
 	if (p.com == 1) {
 		mostrar_mazo(p.robar);
@@ -132,7 +132,7 @@ void ronda(tpartida p) {
 	}
 	//imprime mazo
 
-	printf("Mazo Descartes:\n");
+	printf("\n\nMazo Descartes:\n");
 	printf("|");
 	mostrar_carta(p.descartes.mazo[p.descartes.n-1]);
 	printf("| (%d) Sentido: ", p.descartes.n);
@@ -140,9 +140,9 @@ void ronda(tpartida p) {
 	cambiar_color_letra(4);
 	if (p.sentido == 0)
 	{
-		printf("HORARIO\n");
+		printf("HORARIO");
 	} else {
-		printf("ANTIHORARIO\n");
+		printf("ANTIHORARIO");
 
 	}
 	default_attributes();
@@ -154,7 +154,7 @@ void ronda(tpartida p) {
 
 	for (i=0; i<p.jugs.njug; i++)
 	{
-		printf("%s:\n",p.jugs.jug[i].nom);
+		printf("\n\n%s:\n",p.jugs.jug[i].nom);
 		if (p.com == 1 || i==0) {
 			mostrar_mazo(p.jugs.jug[i].c);
 		} else {
@@ -172,7 +172,7 @@ void ronda(tpartida p) {
 			default_attributes();
 		}
 	}
-	printf("\n");
+	printf("\n\n");
 }
 
 
@@ -183,13 +183,12 @@ void turno(tpartida *p){
 	tcarta setira;
 
 	cambiar_color_letra(2);	
-	printf("Turno %s: ", p->jugs.jug[p->turno].nom);
+	printf("\nTurno %s: ", p->jugs.jug[p->turno].nom);
 	default_attributes();
+	posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
 
 	if (posible.n>0) {	//pot tirar carta
 			printf("Jugades posibles: ");
-			posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
-	
 		if (p->turno == 0) { //tires tu
 			for (i=0; i<posible.n; i++) {		
 				printf("%d(|", i);
@@ -221,7 +220,25 @@ void turno(tpartida *p){
 		cambiar_carta( &(p->jugs.jug[p->turno].c) , &(p->descartes) ,posible.posis[tria]);
 	
 	} else {
-		printf("No podes tirar pputo");
+		tcarta robasion = p->robar.mazo[0];
+		int puedese;		
+
+		printf("Coge del mazo: |");
+		mostrar_carta(robasion);
+		printf("| ");
+		
+		puedese = comparar_carta(robasion, p->descartes.mazo[p->descartes.n-1]);
+		
+		if (puedese==1) {
+			printf("Tira: |");
+			mostrar_carta(robasion);
+			printf("| ");
+			cambiar_carta( &(p->robar) , &(p->descartes), 0);
+		} else {
+			printf("Ha pasado");
+			cambiar_carta( &(p->robar) , &(p->jugs.jug[p->turno].c), 0);
+		}
+		
 	}
 		
 	printf("\nPress return to continue...");	

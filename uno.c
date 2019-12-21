@@ -11,6 +11,7 @@ int main() {
 	int i, a;
 
 	p = inicio();
+	espacio();
 
 
 	while (p.fi==0)
