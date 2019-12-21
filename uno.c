@@ -18,6 +18,7 @@ int main() {
 		ronda(p);
 		turno(&p);
 		finalizar_partida(&p);
+		espacio();
 	}
 
 

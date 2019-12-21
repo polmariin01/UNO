@@ -18,6 +18,7 @@ temazo pos_tir(temazo mazo1, tcarta carta1)
 		if(a==1)
 		{
 			t.mazo[b]=mazo1.mazo[i];
+			t.posis[b]=i;
 			b++;
 			t.n++;
 		}
@@ -55,7 +56,9 @@ void mostrar_mazo(temazo mazo){
 		if (i<files-1){
 			printf("+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+");
 		}
-		printf("\n");
+		if (i != files-1) {
+			printf("\n");
+		}
 	}
 }
 
@@ -139,7 +142,7 @@ void mezclar_mazo(temazo *mazo)
 {	
 	int a, i, b;
 	tcarta c;
-	for(i=0;i< mazo->n ;i++)
+	for(i=0;i< 2* mazo->n ;i++)
 	{
 		a = atzar(mazo->n);
 		do {

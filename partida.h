@@ -18,6 +18,7 @@ typedef struct
 {
 	int n;
 	tcarta mazo[MAXCART];
+	int posis[40];
 } temazo;
 
 typedef struct

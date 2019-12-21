@@ -76,7 +76,7 @@ tpartida inicio() {
 	char sino;
 	do {
 		printf("Quieres ejecutar en modo COMPROBACION? [s/n]: ");
-		scanf("%c", &sino);
+		scanf("%c%*c", &sino);
 	} while (sino!='s' && sino!='S' && sino!='n' && sino!='N');
 
 	if (sino=='s' || sino=='S') {
@@ -93,32 +93,10 @@ tpartida inicio() {
 
 	
 	p.robar = iniciar_cartas();
-
-	/*
-	printf("\n\nMazo iniciado\n");
-	mostrar_mazo(p.robar);
-	
-	mezclar_mazo( &(p.robar)); //no funciona, Gil se encarga
-
-	printf("\n\nMazo mezclado\n");
-	mostrar_mazo(p.robar);
-
-	repartir_cartas( &p);
-
-	printf("\n\nMazo repartido\n");
-	mostrar_mazo(p.robar);
-	*/
-
 	mezclar_mazo( &(p.robar));
 	repartir_cartas( &p);
 
-	int i;
-	for (i=0; i<nj; i++) {
-		printf("\n%s\n", p.jugs.jug[i].nom);
-		mostrar_mazo(p.jugs.jug[i].c);
-	}
-	
-	
+	int i;	
 	int numcart;
 	tcarta primera;
 
@@ -128,12 +106,10 @@ tpartida inicio() {
 	} while (primera.num > 9);
 
 	cambiar_carta( &(p.robar), &(p.descartes), numcart);
-
+	p.color = primera.col; 
 	//descartes i robar
 
-
 	p.turno = atzar(p.jugs.njug);
-
 	//turno al azar
 
 	return p;
@@ -159,26 +135,26 @@ void ronda(tpartida p) {
 	printf("Mazo Descartes:\n");
 	printf("|");
 	mostrar_carta(p.descartes.mazo[p.descartes.n-1]);
-	printf("| (%d) Sentido: \n", p.descartes.n);
+	printf("| (%d) Sentido: ", p.descartes.n);
 	
 	cambiar_color_letra(4);
 	if (p.sentido == 0)
 	{
-		printf("HORARIO");
+		printf("HORARIO\n");
 	} else {
-		printf("ANTIHORARIO");
+		printf("ANTIHORARIO\n");
 
 	}
 	default_attributes();
 	//imprime descartes
 
-
+	
 	int i;
 
 
 	for (i=0; i<p.jugs.njug; i++)
 	{
-		printf("\n%s:\n",p.jugs.jug[i].nom);
+		printf("%s:\n",p.jugs.jug[i].nom);
 		if (p.com == 1 || i==0) {
 			mostrar_mazo(p.jugs.jug[i].c);
 		} else {
@@ -196,24 +172,24 @@ void ronda(tpartida p) {
 			default_attributes();
 		}
 	}
-	scanf("%*c");
+	printf("\n");
 }
 
 
 
 void turno(tpartida *p){
-	int i, tria;
+	int i, tria, wea;
 	temazo posible;
 	tcarta setira;
 
 	cambiar_color_letra(2);	
 	printf("Turno %s: ", p->jugs.jug[p->turno].nom);
 	default_attributes();
-	printf("Jugades posibles: ");
-	posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
-	
-	if (posible.n>0) {	//pot tirar carta
 
+	if (posible.n>0) {	//pot tirar carta
+			printf("Jugades posibles: ");
+			posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
+	
 		if (p->turno == 0) { //tires tu
 			for (i=0; i<posible.n; i++) {		
 				printf("%d(|", i);
@@ -225,10 +201,7 @@ void turno(tpartida *p){
 			do {
 				printf("Que carta tiras? [0-%d]: ", posible.n-1);
 				scanf("%d%*c", &tria);
-			} while (tria>=0 || tria<posible.n);
-
-			setira=posible.mazo[tria];
-
+			} while (tria<0 || tria>=posible.n);
 
 		} else { 
 			for (i=0; i<posible.n; i++) {
@@ -236,21 +209,24 @@ void turno(tpartida *p){
 				mostrar_carta( posible.mazo[i]);
 				printf("|) ");	 
 			}
-			setira=posible.mazo[0];
+			tria = atzar(posible.n);
 		}	
-
 		//a choice has to be made
-	 
 		
+		setira=posible.mazo[tria];
 
 		printf("Tira: ");
 		mostrar_carta(setira);
+		
+		cambiar_carta( &(p->jugs.jug[p->turno].c) , &(p->descartes) ,posible.posis[tria]);
 	
-	} 
-	 else{ }
+	} else {
+		printf("No podes tirar pputo");
+	}
 		
-			
-		
+	printf("\nPress return to continue...");	
+	scanf("%*c");	
+	cambio_turno(p);
 
 	
 }
