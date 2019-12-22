@@ -201,7 +201,7 @@ void turno(tpartida *p){
 	posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
 
 	if (posible.n>0) {	//pot tirar carta
-			printf("Jugades posibles: ");
+		printf("Jugades posibles: ");
 		if (p->turno == 0) { //tires tu
 			for (i=0; i<posible.n; i++) {		
 				printf("%d(|", i);
@@ -281,6 +281,8 @@ void finalizar_partida(tpartida *p)
 void especial(tpartida *p, tcarta c) {
 	int i, col, ntorn;
 
+	printf("\n\nESPECIAL: ");
+
 	if(p->sentido==0)
 	{ 
 		ntorn = (p->turno + 1) % p->jugs.njug;
@@ -293,6 +295,7 @@ void especial(tpartida *p, tcarta c) {
 
 
 	if (c.num >= 10) {
+		printf("YES\n\n%d\n%d\n", p->turno, p->sentido);
 		switch(c.num) {
 			case 10:
 				p->sentido = (p->sentido + 1) % 2;
