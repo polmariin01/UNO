@@ -290,39 +290,36 @@ void especial(tpartida *p, tcarta c) {
 				cambio_turno(p);
 				break;
 			
-
-
-
-
-
 			case 13:
 			case 14:
 
+				if (p->turno == 0){
+					do {
+						printf(" Que color escoges? [ ");
+						
+						for (i=1; i<=4; i++) {
+							printf("%d(|", i);
+							cambiar_color_fondo(i);
+							printf("  ");
+							default_attributes();
+							printf("|) ");
 
-				do {
-					printf("Que color escoges? [ ");
-					for (i=1; i<=4; i++) {
-						printf("1(|");
-						cambiar_color_fondo(i);
-						printf("  ");
-						default_attributes();
-						printf("|) ");
+						}
+						printf("] ");
 
-					}
-					printf("] ");
+						scanf("%d%*c", &col);
+					} while (col<1 || col>4);
+					
+				} else {
+					col = atzar(4)+1;
+				}
 
-					scanf("%d%*c", &col);
-				} while (col<1 || col>4);
-				
 				p->color = col;
 				printf("Color escogido: |");
 				cambiar_color_fondo(col);
 				printf("  ");
 				default_attributes();
 				printf("|\n");
-				break;
-
-			
 			case 12:
 
 				if (c.num%2 == 0) {
