@@ -55,7 +55,7 @@ tpartida inicio() {
 	
 
 	printf ("Tu nombre? ");
-	scanf("%s%*c", &p.jugs.jug[0].nom[0]);
+	scanf("%[^\n]%*c", &p.jugs.jug[0].nom[0]);
 	//nom jugador fet
 
 
@@ -249,6 +249,7 @@ void turno(tpartida *p){
 			mostrar_carta(robasion);
 			printf("| ");
 			cambiar_carta( &(p->robar) , &(p->descartes), 0);
+			especial( &(p) , robasion);
 		} else {
 			printf("Ha pasado");
 			cambiar_carta( &(p->robar) , &(p->jugs.jug[p->turno].c), 0);
@@ -257,10 +258,9 @@ void turno(tpartida *p){
 	}
 		
 	printf("\nPress return to continue...");	
-	scanf("%*c");	
-	cambio_turno(p);
-
+	scanf("%*c");
 	
+	cambio_turno(p);
 }
 
 
@@ -292,8 +292,7 @@ void especial(tpartida *p, tcarta c) {
 			
 			case 13:
 			case 14:
-
-				if (p->turno == 0){
+				if (p->turno == 0) {
 					do {
 						printf(" Que color escoges? [ ");
 						
