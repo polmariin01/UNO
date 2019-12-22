@@ -279,7 +279,18 @@ void finalizar_partida(tpartida *p)
 
 
 void especial(tpartida *p, tcarta c) {
-	int i, col;
+	int i, col, ntorn;
+
+	if(p->sentido==0)
+	{ 
+		ntorn = (p->turno + 1) % p->jugs.njug;
+	}	
+	else 
+	{
+		ntorn = (p->turno + p->jugs.njug) % (p->jugs.njug + 1);
+	}
+
+
 
 	if (c.num >= 10) {
 		switch(c.num) {
@@ -323,7 +334,7 @@ void especial(tpartida *p, tcarta c) {
 
 				if (c.num%2 == 0) {
 					for (i=0; i< c.num % 10; i++) {
-						cambiar_carta( &(p->robar) , &(p->jugs.jug[ p->turno + 1 - 2 * p->sentido ].c) , 0);
+						cambiar_carta( &(p->robar) , &(p->jugs.jug[ntorn].c) , 0);
 					}
 				}
 				break;
