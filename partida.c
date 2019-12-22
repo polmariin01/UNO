@@ -23,7 +23,7 @@ void cambio_turno(tpartida *p) {
 	}	
 	else 
 	{
-		p->turno = (p->turno + p->jugs.njug) % (p->jugs.njug + 1);
+		p->turno = (p->turno + p->jugs.njug - 1) % (p->jugs.njug);
 	}
 }
 
@@ -289,7 +289,7 @@ void especial(tpartida *p, tcarta c) {
 	}	
 	else 
 	{
-		ntorn = (p->turno + p->jugs.njug) % (p->jugs.njug + 1);
+		ntorn = (p->turno + p->jugs.njug - 1) % (p->jugs.njug);
 	}
 
 
