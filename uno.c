@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include "carta.h"
 #include "mazo.h"
 #include "partida.h"
@@ -6,9 +8,11 @@
 
 
 
+
 int main() {
 	tpartida p;
 	int i, a;
+	srand(time(NULL));
 
 	p = inicio();
 	espacio();
