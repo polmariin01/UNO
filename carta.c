@@ -23,9 +23,11 @@ void mostrar_carta(tcarta carta)
 			printf("+2 ");
 			break;
 		case 13:
+			cambiar_color_letra(5);
 			printf(" W ");
 			break;
 		case 14:
+			cambiar_color_letra(5);
 			printf("W+4");
 			break;
 		case -1:
@@ -38,6 +40,10 @@ void mostrar_carta(tcarta carta)
 	}
 	default_attributes();
 }
+
+
+
+
 
 int comparar_carta(tcarta carta1, tcarta carta2)
 {	

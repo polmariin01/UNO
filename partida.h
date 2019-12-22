@@ -11,7 +11,7 @@
 typedef struct
 {
 	int col;
-	int num;
+	int num; // 0-9 normal, 10-R, 11-S, 12-+2, 13-W, 14-W+4
 } tcarta;
 
 typedef struct
@@ -55,7 +55,7 @@ void ronda(tpartida p);
 void turno(tpartida *p);
 void finalizar_partida(tpartida *p);
 
-//void especial();
+void especial();
 
 
 

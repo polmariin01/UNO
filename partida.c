@@ -32,6 +32,7 @@ void cambio_turno(tpartida *p) {
 
 int atzar (int a) {
 	int b;	
+	//srand(time(NULL));
 	b=rand() % a;
 	return b;
 }
@@ -135,7 +136,17 @@ void ronda(tpartida p) {
 	printf("\n\nMazo Descartes:\n");
 	printf("|");
 	mostrar_carta(p.descartes.mazo[p.descartes.n-1]);
-	printf("| (%d) Sentido: ", p.descartes.n);
+	printf("|(%d) ", p.descartes.n);
+
+	if (p.descartes.mazo[ p.descartes.n - 1 ].num >= 13) {
+		printf("| Color escogido: |");
+		cambiar_color_fondo(p.color);
+		printf("  ");
+		default_attributes();
+	}
+
+
+	printf("| Sentido: "); 
 	
 	cambiar_color_letra(4);
 	if (p.sentido == 0)
@@ -145,6 +156,8 @@ void ronda(tpartida p) {
 		printf("ANTIHORARIO");
 
 	}
+
+
 	default_attributes();
 	//imprime descartes
 
@@ -218,6 +231,8 @@ void turno(tpartida *p){
 		mostrar_carta(setira);
 		
 		cambiar_carta( &(p->jugs.jug[p->turno].c) , &(p->descartes) ,posible.posis[tria]);
+
+		especial( &(p) , setira );
 	
 	} else {
 		tcarta robasion = p->robar.mazo[0];
@@ -263,4 +278,60 @@ void finalizar_partida(tpartida *p)
 }
 
 
-//void especial();
+void especial(tpartida *p, tcarta c) {
+	int i, col;
+
+	if (c.num >= 10) {
+		switch(c.num) {
+			case 10:
+				p->sentido = (p->sentido + 1) % 2;
+				break;
+			case 11:
+				cambio_turno(p);
+				break;
+			
+
+
+
+
+
+			case 13:
+			case 14:
+
+
+				do {
+					printf("Que color escoges? [ ");
+					for (i=1; i<=4; i++) {
+						printf("1(|");
+						cambiar_color_fondo(i);
+						printf("  ");
+						default_attributes();
+						printf("|) ");
+
+					}
+					printf("] ");
+
+					scanf("%d%*c", &col);
+				} while (col<1 || col>4);
+				
+				p->color = col;
+				printf("Color escogido: |");
+				cambiar_color_fondo(col);
+				printf("  ");
+				default_attributes();
+				printf("|\n");
+				break;
+
+			
+			case 12:
+
+				if (c.num%2 == 0) {
+					for (i=0; i< c.num % 10; i++) {
+						cambiar_carta( &(p->robar) , &(p->jugs.jug[ p->turno + 1 - 2 * p->sentido ].c) , 0);
+					}
+				}
+				break;
+
+		}
+	}
+}
