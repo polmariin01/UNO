@@ -16,6 +16,8 @@ void espacio() {
 
 
 
+
+
 void cambio_turno(tpartida *p) {
 	if(p->sentido==0)
 	{ 
@@ -26,6 +28,9 @@ void cambio_turno(tpartida *p) {
 		p->turno = (p->turno + p->jugs.njug - 1) % (p->jugs.njug);
 	}
 }
+
+
+
 
 
 
@@ -50,7 +55,6 @@ tpartida inicio() {
 	} while (nj<3 || nj>5);
 
 	p.jugs.njug=nj;
-
 	//numero de jugadors fet
 	
 
@@ -69,7 +73,6 @@ tpartida inicio() {
 		p.jugs.jug[i].nom[6]='\0';
 		
 		p.jugs.jug[i].c.n=0;
-
 	}
 	//noms robots i robots fets
 
@@ -119,6 +122,41 @@ tpartida inicio() {
 
 
 
+
+
+
+
+void chivato(tpartida p) {
+	//asegurarse que este todo bien	
+	
+	printf("\n\nSentido: %d", p.sentido);
+	printf("\nCubierto? %d", p.com);
+	printf("\nTurno: %d", p.turno);
+	printf("\nFinal: %d", p.fi);
+	printf("\nMazo descartes:\n");
+	mostrar_mazo(p.descartes);
+	printf("\nMazo robar:\n");
+	mostrar_mazo(p.robar);
+	printf("\nJugadores (%d):", p.jugs.njug);
+
+	int skere;
+
+	for (skere=0; skere<p.jugs.njug; skere++)
+	{
+		printf("\n%s:\n",p.jugs.jug[skere].nom);
+		mostrar_mazo(p.jugs.jug[skere].c);
+	}
+
+	printf("Todo ok? ");
+	scanf("%*c");
+}
+
+
+
+
+
+
+
 void ronda(tpartida p) {
 	tcarta null = {0,-1};
 
@@ -157,13 +195,10 @@ void ronda(tpartida p) {
 
 	}
 
-
 	default_attributes();
 	//imprime descartes
-
 	
-	int i;
-
+	int i, j;
 
 	for (i=0; i<p.jugs.njug; i++)
 	{
@@ -172,7 +207,7 @@ void ronda(tpartida p) {
 			mostrar_mazo(p.jugs.jug[i].c);
 		} else {
 			printf("|");
-			for (i=0; i<p.jugs.jug[i].c.n; i++) {
+			for (j=0; j<p.jugs.jug[i].c.n; j++) {
 				mostrar_carta(null);
 				printf("|");
 			}
@@ -187,6 +222,16 @@ void ronda(tpartida p) {
 	}
 	printf("\n\n");
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -208,7 +253,6 @@ void turno(tpartida *p){
 				mostrar_carta( posible.mazo[i]);
 				printf("|) ");			
 			}
-			
 			
 			do {
 				printf("Que carta tiras? [0-%d]: ", posible.n-1);
@@ -232,7 +276,7 @@ void turno(tpartida *p){
 		
 		cambiar_carta( &(p->jugs.jug[p->turno].c) , &(p->descartes) ,posible.posis[tria]);
 
-		especial( &(p) , setira );
+		especial( p , setira );
 	
 	} else {
 		tcarta robasion = p->robar.mazo[0];
@@ -260,8 +304,17 @@ void turno(tpartida *p){
 	printf("\nPress return to continue...");	
 	scanf("%*c");
 	
-	cambio_turno(p);
+	cambio_turno(&(*p));
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -278,10 +331,20 @@ void finalizar_partida(tpartida *p)
 }
 
 
+
+
+
+
+
+
+
+
+
+
 void especial(tpartida *p, tcarta c) {
 	int i, col, ntorn;
 
-	printf("\n\nESPECIAL: ");
+	//printf("\nTurno: %d\nSentido: %d\n\nESPECIAL: ", p->turno, p->sentido);
 
 	if(p->sentido==0)
 	{ 
@@ -295,17 +358,17 @@ void especial(tpartida *p, tcarta c) {
 
 
 	if (c.num >= 10) {
-		printf("YES\n\n%d\n%d\n", p->turno, p->sentido);
+		//printf("YES\n\n");
 		switch(c.num) {
-			case 10:
+			case 10:	//R
 				p->sentido = (p->sentido + 1) % 2;
 				break;
-			case 11:
+			case 11:	//S
 				cambio_turno(p);
 				break;
 			
-			case 13:
-			case 14:
+			case 13:	//W
+			case 14:	//W+4
 				if (p->turno == 0) {
 					do {
 						printf(" Que color escoges? [ ");
@@ -328,12 +391,12 @@ void especial(tpartida *p, tcarta c) {
 				}
 
 				p->color = col;
-				printf("Color escogido: |");
+				printf(" Color escogido: |");
 				cambiar_color_fondo(col);
 				printf("  ");
 				default_attributes();
-				printf("|\n");
-			case 12:
+
+			case 12:	//+2
 
 				if (c.num%2 == 0) {
 					for (i=0; i< c.num % 10; i++) {
@@ -341,7 +404,6 @@ void especial(tpartida *p, tcarta c) {
 					}
 				}
 				break;
-
 		}
-	}
+	} 
 }

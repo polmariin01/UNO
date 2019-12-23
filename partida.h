@@ -57,7 +57,7 @@ void finalizar_partida(tpartida *p);
 
 void especial();
 
-
+void chivato(tpartida p);
 
 //int jugadas(tcarta a, temazo b);
 
