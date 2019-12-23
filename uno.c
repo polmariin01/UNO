@@ -20,12 +20,11 @@ int main() {
 	tpartida p;
 	int i, a, f=0;
 	srand(time(NULL));
-	
+
+	intro();
+
 	while (f==0) {
-		espacio();
-		intro();
 		p = inicio();
-		espacio();
 
 		while (p.fi<0) {
 			ronda(p);
@@ -36,7 +35,7 @@ int main() {
 		f = sanseacabo(p);
 	}
 	espacio();
-	printf("Hecho por:\n\nGil Boleda\nEudald Brils\nPol Marin\n\nPress ENTER para salir...");
+	printf("Hecho por:\n\nGil Boleda\nEudald Brils\nPol Marin\n\nPulsa ENTER para salir...");
 	scanf("%*c");
 	espacio();
 }

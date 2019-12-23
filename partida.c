@@ -5,6 +5,7 @@
 #include "mazo.h"
 #include "partida.h"
 #include "colores.h"
+#include <string.h>
 
 
 void espacio() {
@@ -47,6 +48,10 @@ int atzar (int a) {
 tpartida inicio() {
 	tpartida p;
 
+	espacio();
+	printf("NUEVA PARTIDA\n");
+	printf("*************\n\n");
+
 	int nj;
 	do {
 		printf ("Cuantos jugadores? [3-5]: ");
@@ -55,7 +60,6 @@ tpartida inicio() {
 
 	p.jugs.njug=nj;
 	//numero de jugadors fet
-	
 
 	printf ("Tu nombre? ");
 	scanf("%[^\n]%*c", &p.jugs.jug[0].nom[0]);
@@ -106,7 +110,9 @@ tpartida inicio() {
 	do {
 		numcart = atzar(p.robar.n);
 		primera = p.robar.mazo[numcart];
-	} while (primera.num > 9);
+	} while (primera.num >= 9);
+
+	p.descartes.n=0;
 
 	cambiar_carta( &(p.robar), &(p.descartes), numcart);
 	p.color = primera.col; 
@@ -114,6 +120,8 @@ tpartida inicio() {
 
 	p.turno = atzar(p.jugs.njug);
 	//turno al azar
+
+	espacio();
 
 	return p;
 }
@@ -161,7 +169,6 @@ void ronda(tpartida p) {
 		printf("ANTIHORARIO");
 
 	}
-
 	default_attributes();
 	//imprime descartes
 	
@@ -238,9 +245,16 @@ void turno(tpartida *p){
 		
 		setira=posible.mazo[tria];
 
-		printf("Tira: ");
+		printf("Tira: |");
 		mostrar_carta(setira);
-		printf(" ");
+		printf("| ");
+
+		if (p->jugs.jug[p->turno].c.n == 2)
+		{
+			cambiar_color_letra(3);
+			printf(" ** UNO **");
+			default_attributes();
+		}
 
 		cambiar_carta( &(p->jugs.jug[p->turno].c) , &(p->descartes) ,posible.posis[tria]);
 
@@ -290,7 +304,7 @@ void turno(tpartida *p){
 
 void finalizar_partida(tpartida *p)
 {
-	int i;
+	int i, pick;
 	for(i=0;i<p->jugs.njug;i++)
 	{
 		if(p->jugs.jug[i].c.n==0)
@@ -298,6 +312,26 @@ void finalizar_partida(tpartida *p)
 			p->fi=i;
 		}
 	}
+
+
+	//si hay menos de 5 cartas en el mazo para robar, coje todas las del mazo de descartes menos la ultima, las mezcla y las pone en el mazo de robar
+	temazo mezclar;
+	int fin = p->descartes.n-1;
+	if (p->robar.n < 5) {
+		for (i=0; i<fin; i++) {
+			cambiar_carta( &(p->descartes) , &mezclar, 0);
+			printf("Cartas en descarets - %d\nCartas en robar - %d", p->descartes.n, p->robar.n);
+		}
+
+		mezclar_mazo( &mezclar);
+
+		for (i=0; i<fin; i++) {
+			cambiar_carta( &mezclar , &(p->robar), 0);
+		}
+	}
+
+
+
 }
 
 
@@ -373,6 +407,7 @@ void especial(tpartida *p, tcarta c) {
 					for (i=0; i< c.num % 10; i++) {
 						cambiar_carta( &(p->robar) , &(p->jugs.jug[ntorn].c) , 0);
 					}
+					cambio_turno(p);
 				}
 				break;
 		}
