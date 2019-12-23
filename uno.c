@@ -28,8 +28,8 @@ int main() {
 
 	while (p.fi==0)
 	{
-//		chivato(p);
-//		espacio();
+		//chivato(p);
+		//espacio();
 		ronda(p);
 		turno(&p);
 		finalizar_partida(&p);

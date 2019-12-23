@@ -8,6 +8,6 @@
 
 
 void mostrar_carta(tcarta carta);	
-int comparar_carta(tcarta carta1, tcarta carta2);
+int comparar_carta(tcarta carta1, tpartida p);
 
 #endif

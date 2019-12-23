@@ -133,21 +133,25 @@ void chivato(tpartida p) {
 	printf("\nCubierto? %d", p.com);
 	printf("\nTurno: %d", p.turno);
 	printf("\nFinal: %d", p.fi);
-	printf("\nMazo descartes:\n");
+	printf("\nColor: %d ", p.color);
+	cambiar_color_fondo(p.color);
+	printf("  ");
+	default_attributes();	
+	printf("\n\nMazo descartes: (%d)\n", p.descartes.n);
 	mostrar_mazo(p.descartes);
-	printf("\nMazo robar:\n");
+	printf("\n\nMazo robar:(%d)\n", p.robar.n);
 	mostrar_mazo(p.robar);
-	printf("\nJugadores (%d):", p.jugs.njug);
+	printf("\n\nJugadores (%d):", p.jugs.njug);
 
 	int skere;
 
 	for (skere=0; skere<p.jugs.njug; skere++)
 	{
-		printf("\n%s:\n",p.jugs.jug[skere].nom);
+		printf("\n%s (%d):\n", p.jugs.jug[skere].nom, p.jugs.jug[skere].c.n);
 		mostrar_mazo(p.jugs.jug[skere].c);
 	}
 
-	printf("Todo ok? ");
+	printf("\n\n\nTodo ok? ");
 	scanf("%*c");
 }
 
@@ -243,7 +247,7 @@ void turno(tpartida *p){
 	cambiar_color_letra(2);	
 	printf("\nTurno %s: ", p->jugs.jug[p->turno].nom);
 	default_attributes();
-	posible = pos_tir( p->jugs.jug[p->turno].c , p->descartes.mazo[p->descartes.n-1] );
+	posible = pos_tir(*p);
 
 	if (posible.n>0) {	//pot tirar carta
 		printf("Jugades posibles: ");
@@ -273,9 +277,11 @@ void turno(tpartida *p){
 
 		printf("Tira: ");
 		mostrar_carta(setira);
-		
+		printf(" ");
+
 		cambiar_carta( &(p->jugs.jug[p->turno].c) , &(p->descartes) ,posible.posis[tria]);
 
+		p->color= setira.col;
 		especial( p , setira );
 	
 	} else {
@@ -286,13 +292,15 @@ void turno(tpartida *p){
 		mostrar_carta(robasion);
 		printf("| ");
 		
-		puedese = comparar_carta(robasion, p->descartes.mazo[p->descartes.n-1]);
+		puedese = comparar_carta(robasion, *p);
+		//printf("%d", puedese);
 		
 		if (puedese==1) {
 			printf("Tira: |");
 			mostrar_carta(robasion);
 			printf("| ");
 			cambiar_carta( &(p->robar) , &(p->descartes), 0);
+			p->color = robasion.col;
 			especial( &(p) , robasion);
 		} else {
 			printf("Ha pasado");
@@ -371,7 +379,7 @@ void especial(tpartida *p, tcarta c) {
 			case 14:	//W+4
 				if (p->turno == 0) {
 					do {
-						printf(" Que color escoges? [ ");
+						printf("Que color escoges? [ ");
 						
 						for (i=1; i<=4; i++) {
 							printf("%d(|", i);
@@ -391,10 +399,11 @@ void especial(tpartida *p, tcarta c) {
 				}
 
 				p->color = col;
-				printf(" Color escogido: |");
+				printf("Color escogido: |");
 				cambiar_color_fondo(col);
 				printf("  ");
 				default_attributes();
+				printf("| ");
 
 			case 12:	//+2
 

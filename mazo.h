@@ -7,7 +7,7 @@
 #include "partida.h"
 
 
-temazo pos_tir(temazo mazo1, tcarta carta1);
+temazo pos_tir(tpartida p);
 void mostrar_mazo(temazo mazo);
 void repartir_cartas(tpartida *partida);
 void cambiar_carta(temazo *mazo1, temazo *mazo2, int pos); //punteros arreglats

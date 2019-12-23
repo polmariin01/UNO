@@ -45,13 +45,12 @@ void mostrar_carta(tcarta carta)
 
 
 
-int comparar_carta(tcarta carta1, tcarta carta2)
-{	
+int comparar_carta(tcarta carta1, tpartida p)
+{
+	tcarta carta = p.descartes.mazo[p.descartes.n-1];
 	//carta 1 es la de sobre, si la jugada es posible = 1 sino =0//
  int a=0;
-	if((carta1.col==carta2.col)||(carta1.num==carta2.num)||(carta2.num>=13))
-		{
+	if((carta1.col==p.color)||(carta1.num==carta.num)||(carta1.num>=13))
 		a=1;
-		}
 	return(a);
 }

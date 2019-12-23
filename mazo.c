@@ -7,17 +7,17 @@
 #include "colores.h"
 
 
-temazo pos_tir(temazo mazo1, tcarta carta1)
+temazo pos_tir(tpartida p)
 {
 	temazo t;
 	t.n=0;
 	int i,k, a, b=0;
-	for(i=0; i<mazo1.n; i++)
+	for(i=0; i< p.jugs.jug[p.turno].c.n ; i++)
 	{
-		a=comparar_carta(carta1,mazo1.mazo[i]);
+		a=comparar_carta(p.jugs.jug[p.turno].c.mazo[i], p);
 		if(a==1)
 		{
-			t.mazo[b]=mazo1.mazo[i];
+			t.mazo[b]=p.jugs.jug[p.turno].c.mazo[i];
 			t.posis[b]=i;
 			b++;
 			t.n++;
