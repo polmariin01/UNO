@@ -142,7 +142,7 @@ void ronda(tpartida p) {
 	} else {
 		printf("|");
 		mostrar_carta(null);
-		printf("| (%d)\n", p.robar.n);
+		printf("| (%d)", p.robar.n);
 	}
 	//imprime mazo
 
@@ -220,8 +220,8 @@ void turno(tpartida *p){
 	posible = pos_tir(*p);
 
 	if (posible.n>0) {	//pot tirar carta
-		printf("Jugades posibles: ");
 		if (p->turno == 0) { //tires tu
+			printf("Jugades posibles: ");			
 			for (i=0; i<posible.n; i++) {		
 				printf("%d(|", i);
 				mostrar_carta( posible.mazo[i]);
@@ -233,16 +233,18 @@ void turno(tpartida *p){
 				scanf("%d%*c", &tria);
 			} while (tria<0 || tria>=posible.n);
 
-		} else { 
-			for (i=0; i<posible.n; i++) {
-				printf("%d(|", i);
-				mostrar_carta( posible.mazo[i]);
-				printf("|) ");	 
+		} else {	//a choice has to be made
+			if (p->com==1){ 
+				printf("Jugades posibles: ");
+				for (i=0; i<posible.n; i++) {
+					printf("%d(|", i);
+					mostrar_carta( posible.mazo[i]);
+					printf("|) ");	 
+				}
 			}
 			tria = atzar(posible.n);
 		}	
-		//a choice has to be made
-		
+
 		setira=posible.mazo[tria];
 
 		printf("Tira: |");
@@ -252,7 +254,7 @@ void turno(tpartida *p){
 		if (p->jugs.jug[p->turno].c.n == 2)
 		{
 			cambiar_color_letra(3);
-			printf(" ** UNO **");
+			printf(" ** UNO **  ");
 			default_attributes();
 		}
 
