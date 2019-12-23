@@ -1,3 +1,11 @@
+/*
+Gil Boleda 
+Eudald Brils
+Pol Marin
+
+Grup 10
+*/
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
