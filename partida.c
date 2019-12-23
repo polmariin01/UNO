@@ -385,7 +385,7 @@ void especial(tpartida *p, tcarta c) {
 							printf("|) ");
 
 						}
-						printf("] ");
+						printf("]: ");
 
 						scanf("%d%*c", &col);
 					} while (col<1 || col>4);

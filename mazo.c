@@ -23,6 +23,20 @@ temazo pos_tir(tpartida p)
 			t.n++;
 		}
 	}
+
+	if (t.n==0) { //en cas que no hagi trobat cap carta que es pugui tirar diferent al +4
+		for(i=0; i< p.jugs.jug[p.turno].c.n ; i++)
+		{
+			a=comparar_carta(p.jugs.jug[p.turno].c.mazo[i], p);
+			if(a==2)
+			{
+				t.mazo[b]=p.jugs.jug[p.turno].c.mazo[i];
+				t.posis[b]=i;
+				b++;
+				t.n++;
+			}
+		}
+	}
 	return(t);		
 }
 
