@@ -8,33 +8,27 @@
 #include "extres.h"
 
 
-
-
 int main() {
 	tpartida p;
-	int i, a;
-
+	int i, a, f=0;
 	srand(time(NULL));
 	
-	espacio();
-
-	intro();
-	printf("\n\n");
-
-	p = inicio();
-
-	espacio();
-
-
-	while (p.fi==0)
-	{
-		//chivato(p);
-		//espacio();
-		ronda(p);
-		turno(&p);
-		finalizar_partida(&p);
+	while (f==0) {
 		espacio();
+		intro();
+		p = inicio();
+		espacio();
+
+		while (p.fi<0) {
+			ronda(p);
+			turno(&p);
+			finalizar_partida(&p);
+			espacio();
+		}
+		f = sanseacabo(p);
 	}
-
-
+	espacio();
+	printf("Hecho por:\n\nGil Boleda\nEudald Brils\nPol Marin\n\nPress ENTER para salir...");
+	scanf("%*c");
+	espacio();
 }

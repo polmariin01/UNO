@@ -37,7 +37,6 @@ void cambio_turno(tpartida *p) {
 
 int atzar (int a) {
 	int b;	
-	//srand(time(NULL));
 	b=rand() % a;
 	return b;
 }
@@ -92,7 +91,7 @@ tpartida inicio() {
 
 
 	p.sentido=0;
-	p.fi=0;
+	p.fi=-1;
 	//sentido i final fets
 
 	
@@ -117,42 +116,6 @@ tpartida inicio() {
 	//turno al azar
 
 	return p;
-}
-
-
-
-
-
-
-
-
-void chivato(tpartida p) {
-	//asegurarse que este todo bien	
-	
-	printf("\n\nSentido: %d", p.sentido);
-	printf("\nCubierto? %d", p.com);
-	printf("\nTurno: %d", p.turno);
-	printf("\nFinal: %d", p.fi);
-	printf("\nColor: %d ", p.color);
-	cambiar_color_fondo(p.color);
-	printf("  ");
-	default_attributes();	
-	printf("\n\nMazo descartes: (%d)\n", p.descartes.n);
-	mostrar_mazo(p.descartes);
-	printf("\n\nMazo robar:(%d)\n", p.robar.n);
-	mostrar_mazo(p.robar);
-	printf("\n\nJugadores (%d):", p.jugs.njug);
-
-	int skere;
-
-	for (skere=0; skere<p.jugs.njug; skere++)
-	{
-		printf("\n%s (%d):\n", p.jugs.jug[skere].nom, p.jugs.jug[skere].c.n);
-		mostrar_mazo(p.jugs.jug[skere].c);
-	}
-
-	printf("\n\n\nTodo ok? ");
-	scanf("%*c");
 }
 
 
@@ -293,7 +256,6 @@ void turno(tpartida *p){
 		printf("| ");
 		
 		puedese = comparar_carta(robasion, *p);
-		//printf("%d", puedese);
 		
 		if (puedese==1) {
 			printf("Tira: |");
@@ -301,7 +263,7 @@ void turno(tpartida *p){
 			printf("| ");
 			cambiar_carta( &(p->robar) , &(p->descartes), 0);
 			p->color = robasion.col;
-			especial( &(p) , robasion);
+			especial( p, robasion);
 		} else {
 			printf("Ha pasado");
 			cambiar_carta( &(p->robar) , &(p->jugs.jug[p->turno].c), 0);
@@ -333,7 +295,7 @@ void finalizar_partida(tpartida *p)
 	{
 		if(p->jugs.jug[i].c.n==0)
 		{
-			p->fi=1;
+			p->fi=i;
 		}
 	}
 }

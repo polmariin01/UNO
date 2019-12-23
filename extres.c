@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include "carta.h"
+#include "mazo.h"
+#include "partida.h"
+#include "colores.h"
 #include "extres.h"
 
 
@@ -38,3 +42,49 @@ void intro(){
 	printf("@@@@@@@@@@@@@@@            ###############################@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 	printf("@@@@@@@@@@@@@@@@@@@@@################################@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 }
+
+int sanseacabo(tpartida p) {
+	int mood=2;
+	char otra, r=0;
+	if (p.fi == 0)
+		mood=3;
+
+	cambiar_color_letra(mood);
+
+	printf("\n   @@@@@@@    @@@@@@   @@@@@@@   @@@@@@@@  @@  @@@@@      @@@@@@\n");
+	printf("   @@    @@  @@    @@  @@    @@     @@         @@   @@   @@    @@\n");
+	printf("   @@    @@  @@    @@  @@    @@     @@     @@  @@    @@  @@    @@\n");
+	printf("   @@@@@@@   @@@@@@@@  @@@@@@       @@     @@  @@    @@  @@@@@@@@\n");
+	printf("   @@        @@    @@  @@   @@      @@     @@  @@    @@  @@    @@\n");
+	printf("   @@        @@    @@  @@    @@     @@     @@  @@   @@   @@    @@\n");
+	printf("   @@        @@    @@  @@    @@     @@     @@  @@@@@     @@    @@\n\n");
+	printf(" @@@@@@      @@@     @@@@@@   @@@@@@     @@@@@@   @@@@@      @@@@@@\n");
+	printf("@@    @@   @@   @@  @@    @@  @@    @@  @@    @@  @@   @@   @@    @@\n");
+	printf("@@    @@  @@        @@    @@  @@   @@   @@    @@  @@    @@  @@    @@\n");
+	printf("@@@@@@@@  @@        @@@@@@@@  @@@@@@    @@@@@@@@  @@    @@  @@@@@@@@\n");
+	printf("@@    @@  @@        @@    @@  @@   @@   @@    @@  @@    @@  @@    @@\n");
+	printf("@@    @@   @@   @@  @@    @@  @@    @@  @@    @@  @@   @@   @@    @@\n");
+	printf("@@    @@     @@@    @@    @@  @@@@@@    @@    @@  @@@@@     @@    @@\n");
+
+	default_attributes();
+	printf("\n\n");
+
+	if (p.fi==0) {
+		printf("Has ganado. FELICIDADES!\n\n");
+	} else {
+		printf("Ha ganado %s. Suerte la proxima vez!\n\n", p.jugs.jug[p.fi].nom);
+	}
+
+	do {
+		printf("Quieres jugar otra partida? [Y/n] ");
+		scanf("%c%*c", &otra);
+	} while (otra != 'Y' && otra != 'n'  && otra != 'N'  && otra != 'y' );
+	
+	if (otra == 'n' || otra == 'N') {
+		r=1;
+	}
+
+	return r;
+}
+
+
