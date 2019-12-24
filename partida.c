@@ -64,7 +64,7 @@ tpartida inicio() {
 	printf ("Tu nombre? ");
 	scanf("%[^\n]%*c", &p.jugs.jug[0].nom[0]);
 	//nom jugador fet
-
+	p.jugs.jug[0].c.n=0;
 
 	for (int i=1; i<nj; i++) {
 		p.jugs.jug[i].nom[0]='R';
@@ -173,7 +173,7 @@ void ronda(tpartida p) {
 	default_attributes();
 
 	if (p.robo != 0) {
-		printf("Robos acumulados: ");
+		printf(" Robos acumulados: ");
 		cambiar_color_letra(1);
 		printf("+%d", p.robo);
 		default_attributes();
