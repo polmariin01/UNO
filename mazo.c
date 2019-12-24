@@ -12,23 +12,39 @@ temazo pos_tir(tpartida p)
 	temazo t;
 	t.n=0;
 	int i,k, a, b=0;
-	for(i=0; i< p.jugs.jug[p.turno].c.n ; i++)
-	{
-		a=comparar_carta(p.jugs.jug[p.turno].c.mazo[i], p);
-		if(a==1)
-		{
-			t.mazo[b]=p.jugs.jug[p.turno].c.mazo[i];
-			t.posis[b]=i;
-			b++;
-			t.n++;
-		}
-	}
 
-	if (t.n==0) { //en cas que no hagi trobat cap carta que es pugui tirar diferent al +4
+	if (p.robo==0) {
+
 		for(i=0; i< p.jugs.jug[p.turno].c.n ; i++)
 		{
 			a=comparar_carta(p.jugs.jug[p.turno].c.mazo[i], p);
-			if(a==2)
+			if(a%2 == 1)
+			{
+				t.mazo[b]=p.jugs.jug[p.turno].c.mazo[i];
+				t.posis[b]=i;
+				b++;
+				t.n++;
+			}
+		}
+
+		if (t.n==0) { //en cas que no hagi trobat cap carta que es pugui tirar diferent al +4
+			for(i=0; i< p.jugs.jug[p.turno].c.n ; i++)
+			{
+				a=comparar_carta(p.jugs.jug[p.turno].c.mazo[i], p);
+				if(a==2)
+				{
+					t.mazo[b]=p.jugs.jug[p.turno].c.mazo[i];
+					t.posis[b]=i;
+					b++;
+					t.n++;
+				}
+			}
+		}
+	} else { //si hay cartas de robar (W+4 o +2), el jugador solo puede tirar W+4 o un +2 del color correspondiente, al tirarlo se acumulan; en caso de no tener esas cartas, se lleva lo que se haya acumulado
+		for(i=0; i< p.jugs.jug[p.turno].c.n ; i++)
+		{
+			a=comparar_carta(p.jugs.jug[p.turno].c.mazo[i], p);
+			if(a>1)
 			{
 				t.mazo[b]=p.jugs.jug[p.turno].c.mazo[i];
 				t.posis[b]=i;

@@ -43,6 +43,7 @@ typedef struct
 	tjugadores jugs;
 	temazo descartes;
 	temazo robar;
+	int robo;
 }tpartida;
 
 

@@ -56,5 +56,8 @@ int comparar_carta(tcarta carta1, tpartida p)
 	if (carta1.num==14) {
 		a=2;
 	}
+	if ( (carta1.num==12 && carta1.col == p.color ) || (carta1.num == carta.num)) {
+		a=3;
+	}
 	return(a);
 }

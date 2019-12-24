@@ -96,6 +96,7 @@ tpartida inicio() {
 
 	p.sentido=0;
 	p.fi=-1;
+	p.robo=0;
 	//sentido i final fets
 
 	
@@ -170,6 +171,14 @@ void ronda(tpartida p) {
 
 	}
 	default_attributes();
+
+	if (p.robo != 0) {
+		printf("Robos acumulados: ");
+		cambiar_color_letra(1);
+		printf("+%d", p.robo);
+		default_attributes();
+	}
+
 	//imprime descartes
 	
 	int i, j;
@@ -190,7 +199,7 @@ void ronda(tpartida p) {
 		if (p.jugs.jug[i].c.n == 1)
 		{
 			cambiar_color_letra(3);
-			printf(" ** UNO **");
+			printf(" ** UNO ** ");
 			default_attributes();
 		}
 	}
@@ -217,6 +226,7 @@ void turno(tpartida *p){
 	cambiar_color_letra(2);	
 	printf("\nTurno %s: ", p->jugs.jug[p->turno].nom);
 	default_attributes();
+
 	posible = pos_tir(*p);
 
 	if (posible.n>0) {	//pot tirar carta
@@ -254,7 +264,7 @@ void turno(tpartida *p){
 		if (p->jugs.jug[p->turno].c.n == 2)
 		{
 			cambiar_color_letra(3);
-			printf(" ** UNO **  ");
+			printf("** UNO **  ");
 			default_attributes();
 		}
 
@@ -273,7 +283,7 @@ void turno(tpartida *p){
 		
 		puedese = comparar_carta(robasion, *p);
 		
-		if (puedese==1) {
+		if (puedese>=1) {
 			printf("Tira: |");
 			mostrar_carta(robasion);
 			printf("| ");
@@ -348,7 +358,7 @@ void finalizar_partida(tpartida *p)
 
 
 void especial(tpartida *p, tcarta c) {
-	int i, col, ntorn;
+	int i, col, ntorn, selocome;
 
 	//printf("\nTurno: %d\nSentido: %d\n\nESPECIAL: ", p->turno, p->sentido);
 
@@ -404,12 +414,26 @@ void especial(tpartida *p, tcarta c) {
 				printf("| ");
 
 			case 12:	//+2
+				selocome = 1;
+				
+				for (i=0; i < p->jugs.jug[ntorn].c.n; i++) {
+					if ( p->jugs.jug[ntorn].c.mazo[i].num ==14 )
+						selocome=0;
+					if ( p->jugs.jug[ntorn].c.mazo[i].num ==12 && p->jugs.jug[ntorn].c.mazo[i].col == p->color)
+						selocome=0;
+					if ( p->jugs.jug[ntorn].c.mazo[i].num == p->descartes.mazo[p->descartes.n-1].num)
+						selocome=0;
+				}				
 
 				if (c.num%2 == 0) {
-					for (i=0; i< c.num % 10; i++) {
-						cambiar_carta( &(p->robar) , &(p->jugs.jug[ntorn].c) , 0);
+					p->robo = p->robo + c.num%10;
+					if (selocome==1){
+						for (i=0; i< p->robo; i++) {
+							cambiar_carta( &(p->robar) , &(p->jugs.jug[ntorn].c) , 0);
+						}
+						cambio_turno(p);
+						p->robo = 0;
 					}
-					cambio_turno(p);
 				}
 				break;
 		}
